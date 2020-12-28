@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         拼多多审方-通过
 // @namespace    pdd-sf-tg
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       fidcz
 // @match        *mms.pinduoduo.com/orders/medicine/detail?orderSn*
 // @grant        none
+// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/pdd_sf_net.js
 // ==/UserScript==
 
 (function() {
