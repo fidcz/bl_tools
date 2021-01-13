@@ -12,6 +12,5 @@
 下载后双击打开就可以了
 
 ### 功能介绍
-1. 启动页  
-    - 阿塞萨d
-    - as大赛
+* 启动页
+![启动页](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E5%90%AF%E5%8A%A8%E9%A1%B5.png)
