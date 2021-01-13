@@ -4,6 +4,7 @@
 
 ### 工具箱在哪里下载?
 在电脑浏览器上点击后面的链接或者复制浏览器打开下载 <ftp://192.168.101.67/ttt/工具箱/111.exe>
+![浏览器地址栏](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/browser_url.png)
 
 ### 怎么使用?
 下载后双击打开就可以了
