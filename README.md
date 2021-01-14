@@ -167,8 +167,22 @@
 >    
 > 右键某一行商品可以直接查询商品库存信息，详细请看[查询商品信息](#查询商品信息)  
 > 如果查询出来第一行的商品名称前面有"\*"(如下图)，代表当前订单ERP系统未开单，可以右键点击商品查询是否还有库存  
-![订单未开单](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E8%AE%A2%E5%8D%95%E8%B4%A7%E5%8F%B7%E6%9C%AA%E5%BC%80%E5%8D%95.gif)
+![订单未开单](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E8%AE%A2%E5%8D%95%E8%B4%A7%E5%8F%B7%E6%9C%AA%E5%BC%80%E5%8D%95.gif)  
+
+> 适用场景:   
+> **客户咨询为何还不发货(超时24小时，拼多多较多)，复制订单号查询，如果未开单可右键查询是否有库存;
+> 需要查询订单明细的各种情况(这不比打开商家后台查更快吗?当然是已经同步订单的情况)**  
+
 ------
+
+### 获取小票
+> 教程:  
+> 1.输入**订单号**  
+> 2.鼠标右键点击查询  
+
+*提示: 查询到的小票信息仅供参考*
+
+![查询小票](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E8%AF%A2%E5%B0%8F%E7%A5%A8.gif)
 
 ### 功能介绍
 ![启动页](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E5%90%AF%E5%8A%A8%E9%A1%B5.png)
