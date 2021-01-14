@@ -233,8 +233,8 @@
 > **总库存**: 查询药品总共剩余库存; 
 
 > 使用例子一:  
-> 客户需要查有效期
-> ![查有效期](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E6%9C%89%E6%95%88%E6%9C%9F.gif)
+> 客户需要查有效期  
+> ![查有效期](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E6%9C%89%E6%95%88%E6%9C%9F.gif)  
 
  
 
