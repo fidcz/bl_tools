@@ -167,7 +167,7 @@
 >    
 > 右键某一行商品可以直接查询商品库存信息，详细请看[查询商品信息](#查询商品信息)  
 > 如果查询出来第一行的商品名称前面有"\*"(如下图)，代表当前订单ERP系统未开单，可以右键点击商品查询是否还有库存  
-![订单未开单](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E8%AE%A2%E5%8D%95%E8%B4%A7%E5%8F%B7%E6%9C%AA%E5%BC%80%E5%8D%95.png)
+![订单未开单](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E8%AE%A2%E5%8D%95%E8%B4%A7%E5%8F%B7%E6%9C%AA%E5%BC%80%E5%8D%95.gif)
 ------
 
 ### 功能介绍
