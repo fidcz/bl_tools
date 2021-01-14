@@ -81,6 +81,8 @@
 
 ### 6.[修改窗口标题](#修改窗口标题)
 修改每个窗口标题。看到下面全部都是京麦工作台、京麦工作台、京麦工作台、天猫工作台、天猫工作台、天猫工作台.................
+![任务栏前][https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E4%BB%BB%E5%8A%A1%E5%89%8D.png]
+![任务栏后][https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E4%BB%BB%E5%8A%A1%E5%90%8E.png]
 
 ## 功能详细和教程
 ### 修改订单收货信息
