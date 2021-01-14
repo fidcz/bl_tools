@@ -13,7 +13,8 @@
 ![浏览器地址栏](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/browser_url.png)
 
 ## 怎么使用?
-下载后双击打开就可以了
+下载后双击打开就可以了  
+如果360提示病毒，请添加信任  
 
 ## 目录
 * [可见页面简介](#可见页面简介)
