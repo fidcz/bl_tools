@@ -183,6 +183,10 @@
 > **客户咨询为何还不发货(超时24小时，拼多多较多)，复制订单号查询，如果未开单可右键查询是否有库存;  
 > 需要查询订单明细的各种情况(这不比打开商家后台查更快吗?当然是已经同步订单的情况)**  
 
+> 使用例子一:  
+> 客户咨询未发货  
+> ![查发货](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E8%AE%A2%E5%8D%95%E7%BC%BA%E8%B4%A7.gif)  
+
 ------
 
 ### 获取小票
@@ -236,7 +240,9 @@
 > 客户需要查有效期  
 > ![查有效期](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E6%9C%89%E6%95%88%E6%9C%9F.gif)  
 
- 
+> 使用例子二:  
+> 查剩余库存  
+> ![查有效期](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E6%9C%89%E6%95%88%E6%9C%9F.gif)  
 
 
 
