@@ -245,7 +245,7 @@
 
 > 使用例子二:  
 > 查剩余库存  
-> ![查有效期](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E6%9C%89%E6%95%88%E6%9C%9F.gif)  
+> ![查询库存](https://gitee.com/fidcz/blyy_tools_update/raw/master/img/%E6%9F%A5%E8%AF%A2%E5%BA%93%E5%AD%98.gif)  
 
 ------
 
