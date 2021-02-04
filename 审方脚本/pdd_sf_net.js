@@ -6,7 +6,7 @@
 // @author       You
 // @match        *mms.pinduoduo.com/orders/medicine
 // @grant        GM_openInTab
-// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/pdd_sf_net.js
+// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/%E5%AE%A1%E6%96%B9%E8%84%9A%E6%9C%AC/pdd_sf_net.js
 // ==/UserScript==
 
 (function() {
