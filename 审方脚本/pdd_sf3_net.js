@@ -6,6 +6,7 @@
 // @author       fidcz
 // @match        https://mms.pinduoduo.com/login*
 // @grant        window.focus
+// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/%E5%AE%A1%E6%96%B9%E8%84%9A%E6%9C%AC/pdd_sf3_net.js.js
 // ==/UserScript==
 
 (function() {
