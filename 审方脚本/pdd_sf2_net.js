@@ -29,19 +29,25 @@
                 break;
             }
         }
+        // 获取ClassNumber
+        var tClass = document.querySelector("div[data-testid='beast-core-upload']").getAttribute("class");
+        var classNum = tClass.split(" ")[0].split("_")[2];
+        console.log("小框框藏起来了");
+        console.log("classNumber: " + classNum);
 
 
-        if(document.querySelector("i[data-testid='beast-core-icon-time-circle_filled']").parentNode.querySelector("span").innerText == "待审核"){
+
+        if(document.querySelector(".ICN_outerWrapper_" + classNum).parentNode.querySelector("span").innerText == "待审核"){
             // 待审核
-            while (document.querySelector("button.BTN_outerWrapper_4-103-1") == null) {
+            while (document.querySelector("button.BTN_outerWrapper_" + classNum) == null) {
                 await sleep(1000);
-                if (document.querySelector("button.BTN_outerWrapper_4-103-1") != null){
+                if (document.querySelector("button.BTN_outerWrapper_" + classNum) != null){
                     //console.log("小框框藏起来了")
                     break;
                 }
             }
 
-            document.querySelectorAll("button.BTN_outerWrapper_4-103-1")[0].click()
+            document.querySelectorAll("button.BTN_outerWrapper_" + classNum)[0].click()
             await sleep(1500);
 
 
