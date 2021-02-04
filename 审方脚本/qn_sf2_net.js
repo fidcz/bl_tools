@@ -8,6 +8,7 @@
 // @grant        window.focus
 // @grant        window.close
 // @connect      *
+// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/%E5%AE%A1%E6%96%B9%E8%84%9A%E6%9C%AC/qn_sf2_net.js
 // ==/UserScript==
 
 (function() {
