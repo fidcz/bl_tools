@@ -27,10 +27,12 @@
                 break;
             }
         }
+        // 获取ClassNumber
         var tClass = document.querySelector("div[data-testid='beast-core-noticeBar']").getAttribute("class");
         var classNum = tClass.split(" ")[0].split("_")[2];
         console.log("小框框藏起来了");
         console.log("classNumber: " + classNum);
+
         document.querySelectorAll("input[data-testid='beast-core-select-htmlInput']")[1].click();
         await sleep(500);
         document.querySelector(".ST_dropdownPanel_" + classNum).querySelectorAll("li")[1].click();
