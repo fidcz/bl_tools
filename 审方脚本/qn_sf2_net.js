@@ -6,7 +6,6 @@
 // @author       fidcz
 // @match        *://trade.taobao.com/trade/audit_order.htm?bizOrderId=*
 // @grant        gone
-// @grant        window.close
 // @connect      *
 // ==/UserScript==
 
