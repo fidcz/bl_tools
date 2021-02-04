@@ -5,7 +5,7 @@
 // @description  try to take over the world!
 // @author       fidcz
 // @match        https://mms.pinduoduo.com/login*
-// @grant        GM_openInTab
+// @grant        window.focus
 // ==/UserScript==
 
 (function() {
@@ -16,6 +16,7 @@
     }
 
     async function run(){
+        window.focus();
 
     document.querySelector("div.last-item").click();
 
