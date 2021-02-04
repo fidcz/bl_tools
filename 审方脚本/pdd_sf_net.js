@@ -27,12 +27,15 @@
                 break;
             }
         }
-        console.log("小框框藏起来了")
+        var tClass = document.querySelector("div[data-testid='beast-core-noticeBar']").getAttribute("class");
+        var classNum = tClass.split(" ")[0].split("_")[2];
+        console.log("小框框藏起来了");
+        console.log("classNumber: " + classNum);
         document.querySelectorAll("input[data-testid='beast-core-select-htmlInput']")[1].click();
         await sleep(500);
-        document.querySelector(".ST_dropdownPanel_4-103-1").querySelectorAll("li")[1].click();
+        document.querySelector(".ST_dropdownPanel_" + classNum).querySelectorAll("li")[1].click();
         await sleep(200);
-        document.querySelector("button.BTN_outerWrapper_4-103-1").click()
+        document.querySelector("button.BTN_outerWrapper_" + classNum).click()
 
         // 获取列表document.querySelector("tbody[data-testid='beast-core-table-middle-tbody']")
         // 获取列表下的子元素document.querySelector("tbody[data-testid='beast-core-table-middle-tbody']").querySelectorAll("tr")
@@ -40,7 +43,7 @@
         // 查看链接document.querySelector("tbody[data-testid='beast-core-table-middle-tbody']").querySelectorAll("tr")[0].querySelectorAll("td")[6].querySelectorAll("a")[0].getAttribute("href")
         // https://mms.pinduoduo.com/orders/medicine.
 
-        while (document.querySelector("div.TB_loadingInner_4-103-1") != null) {
+        while (document.querySelector("div.TB_loadingInner_" + classNum) != null) {
             await sleep(1000);
             if (document.querySelector("input[data-testid='beast-core-select-htmlInput']") == null){
                 //console.log("小框框藏起来了")
