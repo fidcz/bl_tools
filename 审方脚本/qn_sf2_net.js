@@ -5,7 +5,8 @@
 // @description  try to take over the world!
 // @author       fidcz
 // @match        *://trade.taobao.com/trade/audit_order.htm?bizOrderId=*
-// @grant        gone
+// @grant        window.focus
+// @grant        window.close
 // @connect      *
 // ==/UserScript==
 
@@ -22,6 +23,7 @@
         // 主运行
 
         //.cancelOrder-actions
+        window.focus();
         console.log("开始判断");
         await sleep(3000);
         //J_cancelOrder_error
