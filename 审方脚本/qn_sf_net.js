@@ -8,6 +8,7 @@
 // @grant        GM_xmlhttpRequest
 // @grant        GM_openInTab
 // @connect      *
+// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/%E5%AE%A1%E6%96%B9%E8%84%9A%E6%9C%AC/pdd_sf2_net.js
 // ==/UserScript==
 
 (function () {
