@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         千牛-药师审方
 // @namespace    qn-sf1
-// @version      0.2
+// @version      0.3
 // @description  千牛审方:主页面
 // @author       fidcz
 // @match        *://trade.taobao.com/trade/itemlist/*
@@ -30,7 +30,10 @@
 
     async function run2() {
         // 定时刷新
+        console.log("开始刷新倒计时");
         await sleep(3 * 60 * 1000);
+        console.log("开始定时刷新");
+        location.reload();
         document.querySelector("div[data-reactid='.0.4.0.$drugPending']").click();
         run2();
     }
@@ -97,6 +100,7 @@
             // 存在
             if (document.querySelector("span[data-reactid='.0.6.0.2']").innerText != "由于订单量太大, 导致查询订单超时, 无法返回结果, 请设置查询条件(比如成交时间), 减少查询的订单数量.") {
                 // 内容 刷新
+
                 location.reload();
             }
         }
@@ -110,9 +114,16 @@
         //console.log("获取订单DIV")
         /*try{*/
         if (allList.length <= 0) {
-
+            if(document.querySelector("button[data-reactid='.0.6.0.2.0.1']").disabled && document.querySelector("button[data-reactid='.0.6.0.2.0.0']").disabled){
+                // 如果上下页都是不可点击(全部为空)
+                console.log("没有订单了！！！");
+                return;
+            }else{
+                // 可以点击
             // 刷新
             location.reload();
+            }
+
         }
         for (var i = 0; i < allList.length; i++) {
             //console.log(allList[i].getAttribute("data-reactid"));
@@ -249,7 +260,7 @@
             //    document.querySelector(".cancelOrder-actions").querySelectorAll("button")[0].click();
 
             //await sleep(3000);
-        
+
 
 
 
@@ -305,7 +316,8 @@
         document.querySelector("li[data-reactid='.1.1.0.1.$10/=1$10']").click();
         //console.log(document.querySelector("div[data-reactid='.0.7']").getAttribute("class"));
 
-
+        var d = new Date();
+        console.log(d);
 
         run();
         run2();
