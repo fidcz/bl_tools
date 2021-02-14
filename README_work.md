@@ -1,14 +1,35 @@
-st=>start: Start:>http://www.google.com[blank]
-e=>end:>http://www.google.com
-op1=>operation: My Operation
-sub1=>subroutine: My Subroutine
-cond=>condition: Yes
-or No?:>http://www.google.com
-io=>inputoutput: catch something...
-para=>parallel: parallel tasks
+# My map
 
-st->op1->cond
-cond(yes)->io->e
-cond(no)->para
-para(path1, bottom)->sub1(right)->op1
-para(path2, top)->op1
+## Search sites
+
+- [Google](https://www.google.com/)
+- [Baidu](https://www.baidu.com/)
+- [Bing](https://www.bing.com/)
+- [pixabay](https://pixabay.com/)
+
+## WeChat public number
+
+### The preparatory work
+
+- The theme
+- conceived
+- writing
+- typography
+- Adjustment and supplement
+- Design cover drawing
+- Regularly send
+
+### Late work
+
+- Public number text reading
+- The reader forward
+- The secondary transfer
+- Circle of friends
+- community
+- ......
+
+---
+
+- learning
+- The input
+- The output
