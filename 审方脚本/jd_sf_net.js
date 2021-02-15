@@ -7,7 +7,6 @@
 // @match        *rx.shop.jd.com/rx/rxInfo_auditView.action?rxId=*
 // @grant        GM_xmlhttpRequest
 // @connect      *
-// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/%E5%AE%A1%E6%96%B9%E8%84%9A%E6%9C%AC/jd_sf_net.js
 // ==/UserScript==
 
 (function() {
@@ -31,11 +30,7 @@
             document.getElementById('tipsP').value = '正在获取药品名称...';
         }
 
-        if(ypName == '-1'){
-            // 如果药品名称不对
-            document.getElementById('tipsP').value = '获取药品名称出错 请重试';
-            return;
-        }
+        ypName = document.getElementById('ypName').value;
 
         // 发送修改
         GM_xmlhttpRequest({
