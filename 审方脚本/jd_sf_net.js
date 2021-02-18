@@ -7,6 +7,7 @@
 // @match        *rx.shop.jd.com/rx/rxInfo_auditView.action?rxId=*
 // @grant        GM_xmlhttpRequest
 // @connect      *
+// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/%E5%AE%A1%E6%96%B9%E8%84%9A%E6%9C%AC/jd_sf_net.js
 // ==/UserScript==
 
 (function() {
@@ -16,6 +17,7 @@
     var khSfz = null;
     var khPhone = null;
     var ypName = null;
+    var khYears = null;
 
     // 延迟事件
     function sleep(time) {
@@ -35,7 +37,7 @@
         // 发送修改
         GM_xmlhttpRequest({
             method: 'GET',
-            url: 'http://127.0.0.1:5000/putgitee/' + khName + '|' + khSfz + '|' + khPhone + '|' + ypName,
+            url: 'http://192.168.101.67:5000/putgitee/' + khName + '|' + khSfz + '|' + khPhone + '|' + ypName,
             timeout: 2000,
             onload: (response) => {
                 console.log('onload' + response.readyState);
@@ -63,6 +65,21 @@
         console.log(khName);
         khSfz = document.querySelector('input[name="rxInfo.rxExtendsInfo.idCardNum"]').value;  // 身份证
         console.log(khSfz);
+        khYears = document.querySelector('input[name="rxInfo.rxExtendsInfo.age"]').value;       // 年龄
+        console.log(khYears);
+        if(Number(khYears) < 6){
+            // 小于6岁
+            if(document.querySelectorAll('div.picture-upload-txt').length >= 2){
+                // 没有上传处方
+                toast('年龄小于6岁 并且没有上传处方图片');
+            }
+        }else if(Number(khYears) < 14){
+            // 小于14岁
+            if(document.querySelectorAll('div.picture-upload-txt').length >= 2){
+                // 没有上传处方
+                toast('年龄小于14岁 请判断是否有提供体重信息');
+            }
+        }
 
         while (document.querySelector('td#fullUserPhone').innerHTML.indexOf('****') != -1) {
             // 如果找不到电话框
