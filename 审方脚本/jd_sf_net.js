@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name         京东审方
 // @namespace    jd-sf
-// @version      0.11
+// @version      0.12
 // @description  try to take over the world!
 // @author       You
 // @match        *rx.shop.jd.com/rx/rxInfo_auditView.action?rxId=*
 // @grant        GM_xmlhttpRequest
 // @connect      *
-// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/%E5%AE%A1%E6%96%B9%E8%84%9A%E6%9C%AC/jd_sf_net.js
 // ==/UserScript==
 
 (function() {
@@ -26,11 +25,8 @@
 
     async function inputClick(){
         // 快速审方被点击事件
-        while(ypName == ''){
-            // 如果获取不到药品名称
-            await sleep(1000);
-            document.getElementById('tipsP').value = '正在获取药品名称...';
-        }
+
+        document.getElementById('tipsP').value = '正在修改 请稍等...';
 
         ypName = document.getElementById('ypName').value;
 
