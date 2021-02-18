@@ -7,6 +7,7 @@
 // @match        *rx.shop.jd.com/rx/rxInfo_auditView.action?rxId=*
 // @grant        GM_xmlhttpRequest
 // @connect      *
+// @updateURL    https://gitee.com/fidcz/blyy_tools_update/raw/master/%E5%AE%A1%E6%96%B9%E8%84%9A%E6%9C%AC/jd_sf_net.js
 // ==/UserScript==
 
 (function() {
@@ -17,6 +18,7 @@
     var khPhone = null;
     var ypName = null;
     var khYears = null;
+    var ypSpecs = null;
 
     // 延迟事件
     function sleep(time) {
@@ -98,7 +100,9 @@
                 var result = /dt>药品通用名<\/dt><dd>(.{1,25})<\/dd>/.exec(response.responseText);
                 //console.log(result);
                 ypName = result[1];
-                console.log(ypName);
+                result = /dt>产品规格<\/dt><dd>(.{1,25})<\/dd>/.exec(response.responseText);
+                ypSpecs = result[1];
+                console.log(ypName + ' ' + ypSpecs);
                 inp2.value = ypName;
             },
             onabort: (response) => {
