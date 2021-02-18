@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         京东审方
 // @namespace    jd-sf
-// @version      0.1
+// @version      0.11
 // @description  try to take over the world!
 // @author       You
 // @match        *rx.shop.jd.com/rx/rxInfo_auditView.action?rxId=*
