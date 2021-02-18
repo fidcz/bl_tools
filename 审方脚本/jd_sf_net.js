@@ -67,13 +67,13 @@
             // 小于6岁
             if(document.querySelectorAll('div.picture-upload-txt').length >= 2){
                 // 没有上传处方
-                toast('年龄小于6岁 并且没有上传处方图片');
+                alert('年龄小于6岁 并且没有上传处方图片');
             }
         }else if(Number(khYears) < 14){
             // 小于14岁
             if(document.querySelectorAll('div.picture-upload-txt').length >= 2){
                 // 没有上传处方
-                toast('年龄小于14岁 请判断是否有提供体重信息');
+                alert('年龄小于14岁 请判断是否有提供体重信息');
             }
         }
 
