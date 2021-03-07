@@ -107,7 +107,7 @@
                         ypName = result[1].replace(/(^\s*)|(\s*$)/g, "");
                         inp2.value = ypName;
                     }else{
-                        ypName = ypName + '|' + result[1].replace(/(^\s*)|(\s*$)/g, "");
+                        ypName = ypName + ',' + result[1].replace(/(^\s*)|(\s*$)/g, "");
                         inp2.value = ypName;
                     }
                     
