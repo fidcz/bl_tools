@@ -100,6 +100,7 @@
                 var result = /dt>药品通用名<\/dt><dd>(.{1,25})<\/dd>/.exec(response.responseText);
                 //console.log(result);
                 ypName = result[1];
+                ypName = ypName.replace(/(^\s*)|(\s*$)/g, "");
                 result = /dt>产品规格<\/dt><dd>(.{1,25})<\/dd>/.exec(response.responseText);
                 ypSpecs = result[1];
                 console.log(ypName + ' ' + ypSpecs);
