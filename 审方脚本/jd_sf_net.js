@@ -87,36 +87,46 @@
         //alert("姓名: " + khName + " 身份证: " + khSfz + "\n手机号码: " + khPhone);
 
         //获取药品通用名
-        var ypLink = document.querySelector('h4.d-name').children[0].href;
+        var ypLink = document.querySelector('tbody#skuListTB').children;
+
+        for(var y=0; y<ypLink.length; y++){
+            // 遍历
+            var ypSkuid = ypLink[y].id;
+            ypSkuid = /\d{5,15}/.exec(ypsku)[0];
+            console.log('https://item.jkcsjd.com/' + ypSkuid + '.html');
+            GM_xmlhttpRequest({
+                method: 'GET',
+                url: 'https://item.jkcsjd.com/' + ypSkuid + '.html',
+                timeout: 2000,
+                onload: (response) => {
+                    console.log('onload' + response.readyState);
+                    //console.log(response.responseText);
+                    var result = /dt>药品通用名<\/dt><dd>(.{1,25})<\/dd>/.exec(response.responseText);
+                    //console.log(result);
+                    if(ypName == null){
+                        ypName = result[1].replace(/(^\s*)|(\s*$)/g, "");
+                        inp2.value = ypName;
+                    }else{
+                        ypName = ypName + '|' + result[1].replace(/(^\s*)|(\s*$)/g, "");
+                        inp2.value = ypName;
+                    }
+                    
+
+                },
+                onabort: (response) => {
+                    console.log('onabort' + response.readyState);
+                },
+                onerror: (response) => {
+                    console.log('onerror' + response.readyState);
+                },
+                ontimeout: (response) => {
+                    console.log('ontimeout' + response.readyState);
+                    ypName = '-1';
+                },
+            });
+        }
         //ypName = '';
-        console.log(ypLink);
-        GM_xmlhttpRequest({
-            method: 'GET',
-            url: ypLink,
-            timeout: 2000,
-            onload: (response) => {
-                console.log('onload' + response.readyState);
-                //console.log(response.responseText);
-                var result = /dt>药品通用名<\/dt><dd>(.{1,25})<\/dd>/.exec(response.responseText);
-                //console.log(result);
-                ypName = result[1];
-                ypName = ypName.replace(/(^\s*)|(\s*$)/g, "");
-                result = /dt>产品规格<\/dt><dd>(.{1,25})<\/dd>/.exec(response.responseText);
-                ypSpecs = result[1];
-                console.log(ypName + ' ' + ypSpecs);
-                inp2.value = ypName;
-            },
-            onabort: (response) => {
-                console.log('onabort' + response.readyState);
-            },
-            onerror: (response) => {
-                console.log('onerror' + response.readyState);
-            },
-            ontimeout: (response) => {
-                console.log('ontimeout' + response.readyState);
-                ypName = '-1';
-            },
-        });
+
 
 
     }
