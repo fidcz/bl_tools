@@ -92,7 +92,7 @@
         for(var y=0; y<ypLink.length; y++){
             // 遍历
             var ypSkuid = ypLink[y].id;
-            ypSkuid = /\d{5,15}/.exec(ypsku)[0];
+            ypSkuid = /\d{5,15}/.exec(ypSkuid)[0];
             console.log('https://item.jkcsjd.com/' + ypSkuid + '.html');
             GM_xmlhttpRequest({
                 method: 'GET',
