@@ -1,3 +1,11 @@
+// ==UserScript==
+// @name         天猫反恶
+// @namespace    crypto-js
+// @version      0.99
+// @description  crypto-js
+// @author       fidcz
+// @license MIT
+// ==/UserScript==
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
