@@ -5458,14 +5458,22 @@ define('module/root/left_nav', ["module/cookie", "module/root/audio", "module/ro
     function c(a) {
         var e = $(".J-ajax-menu")
           , n = $(".J-model-menu")
-          , t = "";
+          , t = ""
+          , as = false;
         n.remove(),
         e.removeClass("hide"),
         console.log('myJs root'),
         console.log(a),
+        a.forEach((item, index, arra)=>{
+            if(item.menuName == '订单管理') as = true;
+            if(index == arra.length-1 && !as){
+                let insIndex = 3 >= arra.length ? arra.length : 3;
+                arra.insert(insIndex, {interfaceCode: "", limitInfo: "", mask: "", menuCode: "Ori.Order", menuIcon: null, menuName: "订单管理", pageId: 14, permissionId: 100000, rank: "3",});
+            }
+        }),
         a.forEach(function(a, e) {
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderHistory", menuIcon: null, pageId: null, permissionId: 0, rank: "12", subMenuName: "历史订单(旧)", url: "/v2/order/history"}) : !0;
-            '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.RefundOrder", menuIcon: null, pageId: null, permissionId: 0, rank: "9", subMenuName: "退单", url: "/v2/order/refund/unprocessed"}) : !0;
+            '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderRefund", menuIcon: null, pageId: null, permissionId: 0, rank: "9", subMenuName: "退单", url: "/v2/order/refund/unprocessed"}) : !0;
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderReminder", menuIcon: null, pageId: null, permissionId: 0, rank: "14", subMenuName: "催单", url: "/v2/order/reminder"}) : !0;
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.B2cOrder", menuIcon: null, pageId: null, permissionId: 0, rank: "15", subMenuName: "B2C订单管理", url: "/page/medicine/e/b2cOrder"}) : !0;
             var n = a.subMenus || [];
