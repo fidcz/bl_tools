@@ -5463,6 +5463,9 @@ define('module/root/left_nav', ["module/cookie", "module/root/audio", "module/ro
         e.removeClass("hide"),
         a.forEach(function(a, e) {
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderHistory", menuIcon: null, pageId: null, permissionId: 0, rank: "12", subMenuName: "历史订单(旧)", url: "/v2/order/history"}) : !0;
+            '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderRefundUnprocessed", menuIcon: null, pageId: null, permissionId: 0, rank: "13", subMenuName: "退款", url: "/v2/order/refund/unprocessed"}) : !0;
+            '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderReminder", menuIcon: null, pageId: null, permissionId: 0, rank: "14", subMenuName: "催单", url: "/v2/order/reminder"}) : !0;
+            '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.B2cOrder", menuIcon: null, pageId: null, permissionId: 0, rank: "15", subMenuName: "B2C订单管理", url: "/page/medicine/e/b2cOrder"}) : !0;
             var n = a.subMenus || [];
             t += '<li class="openable">',
             t += '<a class="nav-header collapsed" href="#menu#' + e + '" data-toggle="collapse" data-menu-code="' + a.menuCode + '" data-label="' + a.menuName + '" ',
