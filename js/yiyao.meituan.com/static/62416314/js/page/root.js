@@ -5461,8 +5461,8 @@ define('module/root/left_nav', ["module/cookie", "module/root/audio", "module/ro
           , t = "";
         n.remove(),
         e.removeClass("hide"),
-        '订单管理' === a.menuName ? a.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderHistory", menuIcon: null, pageId: null, permissionId: 0, rank: "12", subMenuName: "历史订单(旧)", url: "/v2/order/history"}) : console.log(a),
         a.forEach(function(a, e) {
+            '订单管理' === a.menuName ? a.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderHistory", menuIcon: null, pageId: null, permissionId: 0, rank: "12", subMenuName: "历史订单(旧)", url: "/v2/order/history"}) : !0;
             var n = a.subMenus || [];
             t += '<li class="openable">',
             t += '<a class="nav-header collapsed" href="#menu#' + e + '" data-toggle="collapse" data-menu-code="' + a.menuCode + '" data-label="' + a.menuName + '" ',
