@@ -11,12 +11,15 @@
 
 (function() {
     'use strict';
-    //require.prototype.myConfig = require.prototype.config;
+    // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
+    // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
+    // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
 
     const myJsUrl = 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com';
     const replaceJsUrl = [
         '/static/62416314/js/page/root.js',
-        '/static/62416314/js/page/order/search.js'
+        '/static/62416314/js/page/order/search.js',
+        '/static/62416314/js/page/order/reminder/order_reminder.js'
         ]
 
     require = function(a,b,c,d){
