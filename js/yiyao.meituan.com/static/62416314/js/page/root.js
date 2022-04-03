@@ -5468,7 +5468,7 @@ define('module/root/left_nav', ["module/cookie", "module/root/audio", "module/ro
             if(item.menuName == '订单管理') as = true;
             if(index == arra.length-1 && !as){
                 let insIndex = 3 >= arra.length ? arra.length : 3;
-                arra.splice(insIndex, 0, {interfaceCode: "", limitInfo: "", mask: "", menuCode: "Ori.Order", menuIcon: null, menuName: "订单管理", pageId: 14, permissionId: 100000, rank: "3",});
+                arra.splice(insIndex, 0, {interfaceCode: "", limitInfo: "", mask: "", menuCode: "Ori.Order", menuIcon: null, menuName: "订单管理", pageId: 14, permissionId: 100000, rank: "3", subMenus: []});
             }
         }),
         a.forEach(function(a, e) {
