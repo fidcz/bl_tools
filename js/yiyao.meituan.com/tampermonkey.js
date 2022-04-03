@@ -20,7 +20,8 @@
         '/static/62416314/js/page/root.js',
         '/static/62416314/js/page/order/search.js',
         '/static/62416314/js/page/order/reminder/order_reminder.js',
-        '/static/62416314/js/page/order/history.js'
+        '/static/62416314/js/page/order/history.js',
+        '/static/62416314/js/page/order/refund/unprocessed.js'
         ]
 
     require = function(a,b,c,d){
