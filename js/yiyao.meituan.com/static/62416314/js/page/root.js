@@ -5475,6 +5475,7 @@ define('module/root/left_nav', ["module/cookie", "module/root/audio", "module/ro
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderHistory", menuIcon: null, pageId: null, permissionId: 0, rank: "12", subMenuName: "历史订单(旧)", url: "/v2/order/history"}) : !0;
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderRefund", menuIcon: null, pageId: null, permissionId: 0, rank: "9", subMenuName: "退单", url: "/v2/order/refund/unprocessed"}) : !0;
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderReminder", menuIcon: null, pageId: null, permissionId: 0, rank: "14", subMenuName: "催单", url: "/v2/order/reminder"}) : !0;
+            '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.ChangeAddress", menuIcon: null, pageId: null, permissionId: 0, rank: "13", subMenuName: "修改地址", url: "/v2/order/change_address"}) : !0;
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.B2cOrder", menuIcon: null, pageId: null, permissionId: 0, rank: "15", subMenuName: "B2C订单管理", url: "/page/medicine/e/b2cOrder"}) : !0;
             var n = a.subMenus || [];
             t += '<li class="openable">',
