@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MT TEST
 // @namespace    mttest
-// @version      0.1
+// @version      0.11
 // @description  heel
 // @author       fff
 // @include      *yiyao.meituan.com/*
@@ -17,11 +17,11 @@
 
     const myJsUrl = 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com';
     const replaceJsUrl = [
-        '/static/62416314/js/page/root.js',
-        '/static/62416314/js/page/order/search.js',
-        '/static/62416314/js/page/order/reminder/order_reminder.js',
-        '/static/62416314/js/page/order/history.js',
-        '/static/62416314/js/page/order/refund/unprocessed.js'
+        '/static/624ee951/js/page/root.js',
+        '/static/624ee951/js/page/order/search.js',
+        '/static/624ee951/js/page/order/reminder/order_reminder.js',
+        '/static/624ee951/js/page/order/history.js',
+        '/static/624ee951/js/page/order/refund/unprocessed.js'
         ]
 
     require = function(a,b,c,d){
