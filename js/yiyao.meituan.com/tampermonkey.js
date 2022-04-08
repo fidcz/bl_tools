@@ -9,6 +9,7 @@
 // @grant        none
 // @updateURL    https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/tampermonkey.js
 // @downloadURL  https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/tampermonkey.js
+// @license      MIT
 // ==/UserScript==
 
 (function() {
