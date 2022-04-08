@@ -2,7 +2,7 @@
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
 // @version      0.12
-// @description  美团替换页面和声音次数
+// @description  美团替换页面和声音次数1
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
