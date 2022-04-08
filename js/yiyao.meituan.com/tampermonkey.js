@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         MT TEST
-// @namespace    mttest
+// @name         美团替换页面和声音次数
+// @namespace    mt_change
 // @version      0.11
-// @description  heel
-// @author       fff
+// @description  美团替换页面和声音次数
+// @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
 // @grant        none
