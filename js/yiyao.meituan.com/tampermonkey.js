@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.15
+// @version      0.16
 // @description  美团替换页面和声音次数0.15
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
@@ -19,13 +19,15 @@
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
     console.log('mt_change ver:0.15');
 
+    const jsVersion = '625399de'
+
     const myJsUrl = 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com';
     const replaceJsUrl = [
-        '/static/624ee951/js/page/root.js',
-        '/static/624ee951/js/page/order/search.js',
-        '/static/624ee951/js/page/order/reminder/order_reminder.js',
-        '/static/624ee951/js/page/order/history.js',
-        '/static/624ee951/js/page/order/refund/unprocessed.js'
+        '/static/' + jsVersion + '/js/page/root.js',
+        '/static/' + jsVersion + '/js/page/order/search.js',
+        '/static/' + jsVersion + '/js/page/order/reminder/order_reminder.js',
+        '/static/' + jsVersion + '/js/page/order/history.js',
+        '/static/' + jsVersion + '/js/page/order/refund/unprocessed.js'
         ]
 
     require = function(a,b,c,d){
