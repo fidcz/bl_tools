@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.20
-// @description  美团替换页面和声音次数0.20
+// @version      0.21
+// @description  美团替换页面和声音次数0.21
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
@@ -17,7 +17,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change ver:0.20');
+    console.log('mt_change ver:0.21');
 
 
     // 使用本地网站上的version
@@ -43,8 +43,10 @@
         //console.log('myJs Req');
         //console.log(a,b,c,d);
         if (replaceJsUrl.includes(a[0])){
-            console.log('FIND AND REPLACE!!!');
-            a[0] = myJsUrl + a[0];
+            // console.log('FIND AND REPLACE!!!');
+            let replaceUrl = a[0].replace('/'+jsVersion);
+            console.log('myJs: replace Url\n'+ a[0] + '  ->  '+ replaceUrl);
+            a[0] = myJsUrl + replaceUrl;
             // return;
         }
         requirejs(a,b,c,d);
