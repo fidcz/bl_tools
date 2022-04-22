@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.19
-// @description  美团替换页面和声音次数0.19
+// @version      0.20
+// @description  美团替换页面和声音次数0.20
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
@@ -19,7 +19,14 @@
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
     console.log('mt_change ver:0.15');
 
-    const jsVersion = '625fd8c1'
+
+    // 使用本地网站上的version
+    let reVer = /\/(\w{8})\/js/g.exec(document.head.textContent);
+    if(reVer == null){
+        reVer = /\/(\w{8})\/js/g.exec(document.head.innerText);
+    }
+    
+    const jsVersion = reVer[1];
 
     const myJsUrl = 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com';
     const replaceJsUrl = [
