@@ -19,7 +19,7 @@
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
     console.log('mt_change ver:0.15');
 
-    const jsVersion = '625d32d5'
+    const jsVersion = '625fd8c1'
 
     const myJsUrl = 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com';
     const replaceJsUrl = [
