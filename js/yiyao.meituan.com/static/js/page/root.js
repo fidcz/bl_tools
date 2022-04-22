@@ -4533,6 +4533,7 @@ define('module/root/left_nav', ["module/cookie", "module/root/audio", "module/ro
                 arra.splice(insIndex, 0, {interfaceCode: "", limitInfo: "", mask: "", menuCode: "Ori.Order", menuIcon: null, menuName: "订单管理", pageId: 14, permissionId: 100000, rank: "3", subMenus: []});
             }
         }),
+        console.log(a),
         a.forEach(function(a, e) {
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderHistory", menuIcon: null, pageId: null, permissionId: 0, rank: "12", subMenuName: "历史订单(旧)", url: "/v2/order/history"}) : !0;
             '订单管理' === a.menuName ? a.subMenus.push({interfaceCode: "", limitInfo: "", mask: "new", menuCode: "Sub.OrderRefund", menuIcon: null, pageId: null, permissionId: 0, rank: "9", subMenuName: "退单", url: "/v2/order/refund/unprocessed"}) : !0;
