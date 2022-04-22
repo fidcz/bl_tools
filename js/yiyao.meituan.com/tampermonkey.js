@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.22
-// @description  美团替换页面和声音次数0.22
+// @version      0.23
+// @description  美团替换页面和声音次数0.23
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
-// @grant        none
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @updateURL    https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/tampermonkey.js
 // @downloadURL  https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/tampermonkey.js
 // @license      MIT
@@ -17,7 +18,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change ver:0.22');
+    console.log('mt_change ver:0.23');
 
 
     // 使用本地网站上的version
@@ -26,6 +27,17 @@
         reVer = /\/(\w{8})\/js/g.exec(document.head.innerText);
     }
     
+    const localVer = GM_getValue('mt_js_ver');
+    if(localVer == undefined && reVer != null){
+        GM_setValue('mt_js_ver', reVer[1]);
+    }else if(localVer != undefined && reVer == null){
+        reVer = ['', localVer];
+    }else if(localVer != undefined && reVer != null){
+        if(localVer != reVer[1]){
+            GM_setValue('mt_js_ver', reVer[1]);
+        }
+    }
+
     const jsVersion = reVer[1];
 
     console.log('myJs: jsVer:'+jsVersion);
