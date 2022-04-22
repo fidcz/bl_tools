@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.18
-// @description  美团替换页面和声音次数0.18
+// @version      0.19
+// @description  美团替换页面和声音次数0.19
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
