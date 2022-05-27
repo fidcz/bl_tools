@@ -19,7 +19,7 @@
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
     console.log('mt_change ver:0.24');
-
+    unsafeWindow.closeNotify = false;
 
     // 使用本地网站上的version
     let reVer = /\/(\w{8})\/js/g.exec(document.head.textContent);
@@ -118,14 +118,16 @@
         if (typeof isFSendNotify !== 'undefined' && !Boolean(isFSendNotify)){
             return;
         }
-
         if(!document.hidden){
             // 当前页面显示，不提醒
             return;
         }
+        if(typeof unsafeWindow.closeNotify != 'undefined' && unsafeWindow.closeNotify){
+            // 关闭消息提醒
+            return;
+        }
     
         try{
-            console.log(data);
             if(typeof(data.time) === 'undefined' || typeof(data.body) === 'undefined' || typeof(data.uuid) === 'undefined'){
                 return;
             }else{
@@ -239,7 +241,7 @@
     // }
 
     async function loopHookIm(){
-        for(let i=0; i<=30; i++){
+        for(let i=0; i<=100; i++){
             try{
                 if(typeof(unsafeWindow.imApp.mtdx.eventEmitter.on) !== 'undefined'){
                     unsafeWindow.imApp.mtdx.eventEmitter.on('message', (msgdata)=>{checkLocalNotify(msgdata.message)});
@@ -251,11 +253,37 @@
         }
     }
 
+    async function addCloseTip(){
+        await sleep(6000);
+        // 添加关闭提示按钮
+        let closeA = document.createElement("a");
+        closeA.innerHTML = '关闭消息提醒';
+        closeA.className = 'pull-right close-im';
+        let inserNode = document.getElementsByClassName('fa-custom-config');
+        console.log(inserNode.length);
+        for(let index=0; index<inserNode.length; index++){
+            let parent = inserNode[index].parentNode;
+            parent.insertBefore(closeA, inserNode[index].nextSibling);
+        }
+
+        closeA.onclick = (event)=>{
+            if(typeof unsafeWindow.closeNotify != 'undefined' && unsafeWindow.closeNotify){
+                // 取消关闭
+                unsafeWindow.closeNotify = false;
+                event.target.innerHTML = '关闭消息提醒';
+            }else{
+                unsafeWindow.closeNotify = true;
+                event.target.innerHTML = '开启消息提醒';
+            }
+        };
+    }
+
     window.onload = ()=>{
         loopHookIm();
         changeEle("refund-audio", "1", "refundSound1.ogg");
         changeEle("reminder-audio", "1", "reminderSound1.ogg");
         setLoop();
+        addCloseTip();
     }
 
 
