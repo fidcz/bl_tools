@@ -49,8 +49,7 @@
         '/static/' + jsVersion + '/js/page/order/search.js',
         '/static/' + jsVersion + '/js/page/order/reminder/order_reminder.js',
         '/static/' + jsVersion + '/js/page/order/history.js',
-        '/static/' + jsVersion + '/js/page/order/refund/unprocessed.js',
-        '/static/' + jsVersion + '/js/lib/dxSDK.src.extra.min.js'
+        '/static/' + jsVersion + '/js/page/order/refund/unprocessed.js'
     ];
     
 
@@ -89,57 +88,8 @@
         //ele.innerHTML='<div id="' + id + '" data-loop="' + loop + '" data-src="' + ogg + '"></div>';
     }
 
-    // 动态加载script资源
-    function loadScript(url, cb) {
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        if(script.readyState) {  // IE浏览器
-            script.onreadystatechange = function() {
-                if (script.readyState === 'loaded' || script.readyState === 'complete') {
-                    script.onreadystatechange = null;  // 删除事件，避免重复触发
-                    cb && cb();
-                }
-            }
-        }else {
-            script.onload = () => {
-                cb && cb();
-            }
-        }
-        script.src = url;
-        document.querySelector('head').appendChild(script);
-        console.dir(script)
-    }
-
-
-    function changeEle_js(fromJs, toJs){
-        // 替换页面上的JS标签
-        let docJsEle = document.getElementsByTagName('script');
-        for(let index=0; index<docJsEle.length; index++){
-            console.log(docJsEle[index]);
-            console.log(docJsEle[index].getAttribute('src'));
-            if(docJsEle[index].getAttribute('src') == replaceJsUrl[5]){
-                docJsEle[index].setAttribute('src', 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
-            }
-        }
-    }
     console.log('Change Require');
 
-    async function setLoop_changeJs() {
-        for(let i=0;i<=50;i++){
-            //$("#refund-audio").attr("data-loop", "1");
-            //$("#new-order-audio").attr("data-src", "newOrderx.ogg");
-            //$("#reminder-audio").attr("data-loop", "1");
-            if( typeof unsafeWindow.MTDX !== 'undefined'){
-                console.log('找到MTDX了!!!!');
-                // delete unsafeWindow.MTDX;
-                // loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
-                // loadScript('https://yiyao.meituan.com/static/628f3146/js/lib/dxSDK.src.extra.min.js');
-                return;
-            }
-            await sleep(500);
-        }
-            // console.log("Auto change end");
-    }
 
     async function setLoop() {
         for(let i=0;i<=20;i++){
@@ -152,32 +102,10 @@
         }
             console.log("Auto change end");
     }
-    console.log("Start modify loop");
-    if(unsafeWindow.MTDX){
-        console.log('!!!!找到MTDX了!!!!');
-        delete unsafeWindow.MTDX;
-        // delete unsafeWindow.imApp;
-        loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
-        // unsafeWindow.imApp._mtdxInstance();
-        loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/health-static/sgIm.umd.688cc113.js');
-        // loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/page/root.js');
-    }
-    // loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
     window.onload = ()=>{
-        // console.log(window.MTDX);
-        // delete unsafeWindow.MTDX;
-        // changeEle_js();
-        // 用法：
-        // loadScript('https://yiyao.meituan.com/static/628f3146/js/lib/dxSDK.src.extra.min.js');
-        // unsafeWindow.parseMsg = unsafeWindow.MTDX.default.parseMessage;
-        // unsafeWindow.MTDX.default.parseMessage = (t)=>{
-        //     console.log(t);
-        //     return window.parseMsg(t);
-        // }
         changeEle("refund-audio", "1", "refundSound1.ogg");
         changeEle("reminder-audio", "1", "reminderSound1.ogg");
         setLoop();
-        setLoop_changeJs();
     }
 
 
