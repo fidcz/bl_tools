@@ -53,7 +53,13 @@
     ];
     
 
-    
+    require.config({
+        baseUrl: VM.STATIC_URL,
+        waitSeconds: 0
+    });
+    require(['https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js'], function () {
+        require(['https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js']);
+    });
 
     require = function(a,b,c,d){
         //console.log('myJs Req');
@@ -73,7 +79,9 @@
         requirejs.config(a);
     }
 
-        function sleep(time) {
+
+
+    function sleep(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 
