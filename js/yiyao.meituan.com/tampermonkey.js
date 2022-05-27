@@ -156,9 +156,11 @@
     if(unsafeWindow.MTDX){
         console.log('!!!!找到MTDX了!!!!');
         delete unsafeWindow.MTDX;
-        delete unsafeWindow.imApp;
+        // delete unsafeWindow.imApp;
         loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
-        loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/health-static/sgIm.umd.688cc113.js');
+        unsafeWindow.imApp._mtdxInstance();
+        // loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/health-static/sgIm.umd.688cc113.js');
+        // loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/page/root.js');
     }
     // loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
     window.onload = ()=>{
