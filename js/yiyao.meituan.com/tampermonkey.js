@@ -118,6 +118,11 @@
         if (typeof isFSendNotify !== 'undefined' && !Boolean(isFSendNotify)){
             return;
         }
+
+        if(!document.hidden){
+            // 当前页面显示，不提醒
+            return;
+        }
     
         try{
             console.log(data);
