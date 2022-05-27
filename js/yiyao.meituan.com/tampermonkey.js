@@ -51,7 +51,10 @@
         '/static/' + jsVersion + '/js/page/order/history.js',
         '/static/' + jsVersion + '/js/page/order/refund/unprocessed.js',
         '/static/' + jsVersion + '/js/lib/dxSDK.src.extra.min.js'
-        ]
+    ];
+    
+
+    
 
     require = function(a,b,c,d){
         //console.log('myJs Req');
@@ -121,6 +124,23 @@
     }
     console.log('Change Require');
 
+    async function setLoop_changeJs() {
+        for(let i=0;i<=50;i++){
+            //$("#refund-audio").attr("data-loop", "1");
+            //$("#new-order-audio").attr("data-src", "newOrderx.ogg");
+            //$("#reminder-audio").attr("data-loop", "1");
+            if( typeof unsafeWindow.MTDX !== 'undefined'){
+                console.log('找到MTDX了!!!!');
+                // delete unsafeWindow.MTDX;
+                // loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
+                // loadScript('https://yiyao.meituan.com/static/628f3146/js/lib/dxSDK.src.extra.min.js');
+                return;
+            }
+            await sleep(500);
+        }
+            // console.log("Auto change end");
+    }
+
     async function setLoop() {
         for(let i=0;i<=20;i++){
             //$("#refund-audio").attr("data-loop", "1");
@@ -133,14 +153,28 @@
             console.log("Auto change end");
     }
     console.log("Start modify loop");
-
+    if(unsafeWindow.MTDX){
+        console.log('!!!!找到MTDX了!!!!');
+        delete unsafeWindow.MTDX;
+        loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
+        loadScript('https://yiyao.meituan.com/health-static/sgIm.umd.688cc113.js');
+    }
+    // loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
     window.onload = ()=>{
+        // console.log(window.MTDX);
+        // delete unsafeWindow.MTDX;
         // changeEle_js();
         // 用法：
-        loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
+        // loadScript('https://yiyao.meituan.com/static/628f3146/js/lib/dxSDK.src.extra.min.js');
+        // unsafeWindow.parseMsg = unsafeWindow.MTDX.default.parseMessage;
+        // unsafeWindow.MTDX.default.parseMessage = (t)=>{
+        //     console.log(t);
+        //     return window.parseMsg(t);
+        // }
         changeEle("refund-audio", "1", "refundSound1.ogg");
         changeEle("reminder-audio", "1", "reminderSound1.ogg");
         setLoop();
+        setLoop_changeJs();
     }
 
 
