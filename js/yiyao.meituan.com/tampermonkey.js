@@ -39,6 +39,7 @@
     }
 
     const jsVersion = reVer[1];
+    // const jsVersion =  '628f3146';
 
     console.log('myJs: jsVer:'+jsVersion);
 
@@ -85,12 +86,36 @@
         //ele.innerHTML='<div id="' + id + '" data-loop="' + loop + '" data-src="' + ogg + '"></div>';
     }
 
+    // 动态加载script资源
+    function loadScript(url, cb) {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        if(script.readyState) {  // IE浏览器
+            script.onreadystatechange = function() {
+                if (script.readyState === 'loaded' || script.readyState === 'complete') {
+                    script.onreadystatechange = null;  // 删除事件，避免重复触发
+                    cb && cb();
+                }
+            }
+        }else {
+            script.onload = () => {
+                cb && cb();
+            }
+        }
+        script.src = url;
+        document.querySelector('head').appendChild(script);
+        console.dir(script)
+    }
+
+
     function changeEle_js(fromJs, toJs){
         // 替换页面上的JS标签
         let docJsEle = document.getElementsByTagName('script');
-        for(let index=0; index<docJsEle; index++){
+        for(let index=0; index<docJsEle.length; index++){
+            console.log(docJsEle[index]);
+            console.log(docJsEle[index].getAttribute('src'));
             if(docJsEle[index].getAttribute('src') == replaceJsUrl[5]){
-                console.log(docJsEle[index]);
+                docJsEle[index].setAttribute('src', 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
             }
         }
     }
@@ -110,6 +135,9 @@
     console.log("Start modify loop");
 
     window.onload = ()=>{
+        // changeEle_js();
+        // 用法：
+        loadScript('https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com/static/js/lib/dxSDK.src.extra.min.js');
         changeEle("refund-audio", "1", "refundSound1.ogg");
         changeEle("reminder-audio", "1", "reminderSound1.ogg");
         setLoop();
