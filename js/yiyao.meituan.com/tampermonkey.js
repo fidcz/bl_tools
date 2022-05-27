@@ -84,6 +84,16 @@
 
         //ele.innerHTML='<div id="' + id + '" data-loop="' + loop + '" data-src="' + ogg + '"></div>';
     }
+
+    function changeEle_js(fromJs, toJs){
+        // 替换页面上的JS标签
+        let docJsEle = document.getElementsByTagName('script');
+        for(let index=0; index<docJsEle; index++){
+            if(docJsEle[index].getAttribute('src') == replaceJsUrl[5]){
+                console.log(docJsEle[index]);
+            }
+        }
+    }
     console.log('Change Require');
 
     async function setLoop() {
