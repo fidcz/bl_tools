@@ -70,7 +70,7 @@
     }
     require.config = function(a){
         //console.log('myJs Con')
-        //console.log(a);
+        console.log(a);
         requirejs.config(a);
     }
 
