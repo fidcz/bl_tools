@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.25
-// @description  美团替换页面和声音次数,Hook消息0.25
+// @version      0.26
+// @description  美团替换页面和声音次数,Hook消息0.26
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
@@ -18,7 +18,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change ver:0.25');
+    console.log('mt_change ver:0.26');
     unsafeWindow.closeNotify = false;
 
     // 使用本地网站上的version
@@ -132,8 +132,8 @@
                 return;
             }else{
                 const nowTime = new Date().getTime();
-                if(nowTime - Number(data.time) > 90){
-                    // 超时消息不提醒;
+                if(nowTime - Number(data.time) > 60000){
+                    // 超时消息不提醒 60s
                     return;
                 }
                 if(data.uuid.slice(0,7) != 'biz-kf-'){
@@ -216,7 +216,7 @@
                     // 用户还未选择，可以询问用户是否同意发送通知
                     Notification.requestPermission().then(permission => {
                         if (permission === 'granted') {
-                            console.log('用户同意授权');
+                            // console.log('用户同意授权');
                             var isFSendNotify = true;
                             sendLocalNotify(notifyTitle, notifyContent);
                         } else if (permission === 'default') {
@@ -224,7 +224,7 @@
                         } else {
                         // denied
                             var isFSendNotify = false;
-                            console.log('用户拒绝授权 不能显示通知');
+                            // console.log('用户拒绝授权 不能显示通知');
                         }
                     });
                 } else {
@@ -260,7 +260,7 @@
         closeA.innerHTML = '关闭消息提醒';
         closeA.className = 'pull-right close-im';
         let inserNode = document.getElementsByClassName('fa-custom-config');
-        console.log(inserNode.length);
+        // console.log(inserNode.length);
         for(let index=0; index<inserNode.length; index++){
             let parent = inserNode[index].parentNode;
             parent.insertBefore(closeA, inserNode[index].nextSibling);
