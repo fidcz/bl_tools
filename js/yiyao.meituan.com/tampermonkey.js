@@ -18,7 +18,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change ver:0.24');
+    console.log('mt_change ver:0.25');
     unsafeWindow.closeNotify = false;
 
     // 使用本地网站上的version
