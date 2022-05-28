@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.27
-// @description  美团替换页面和声音次数,Hook消息0.27
+// @version      0.28
+// @description  美团替换页面和声音次数,Hook消息0.28
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
@@ -18,7 +18,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change ver:0.27');
+    console.log('mt_change ver:0.28');
     unsafeWindow.closeNotify = false;
 
     // 使用本地网站上的version
@@ -110,7 +110,8 @@
             // 通知图标 
             icon: "https://p0.meituan.net/business/59598679e63726afc85df1b3f2b299f978785.png"
         };
-        let notification = new Notification(title, options); // 显示通知
+        unsafeWindow.mtNotification = new Notification(title, options); // 显示通知
+        setTimeout("window.mtNotification.close()", 3000);
     }
     
     var checkLocalNotify = function (data){
