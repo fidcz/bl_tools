@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.28
-// @description  美团替换页面和声音次数,Hook消息0.28
+// @version      0.29
+// @description  美团替换页面和声音次数,Hook消息0.29
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
@@ -18,7 +18,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change ver:0.28');
+    console.log('mt_change ver:0.29');
     unsafeWindow.closeNotify = false;
 
     // 使用本地网站上的version
@@ -119,7 +119,7 @@
         if (typeof isFSendNotify !== 'undefined' && !Boolean(isFSendNotify)){
             return;
         }
-        if(!document.hidden){
+        if(document.hasFocus()){
             // 当前页面显示，不提醒
             return;
         }
