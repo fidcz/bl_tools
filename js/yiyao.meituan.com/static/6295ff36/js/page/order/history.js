@@ -128,7 +128,7 @@ define('module/interface', [], function() {
             getCancelReasons: "/v2/order/receive/cancelReasons/r/get",
             newOrderReceipt: "/v2/order/receive/unprocessed/w/mreceipt",
             getOrderChargeInfo: "/v2/order/receive/r/chargeInfo",
-            getOrderMedicareInfo: "/hipay/poi/medicare/order/amountInfo",
+            getOrderMedicareInfo: "/health/pc/medicare/order/amountInfo",
             hasSent: "/v2/order/receive/processed/w/sent/v2",
             sendDistribution: "/v2/order/receive/processed/w/distribute/v2",
             sendDistributionForPtGray: "/v2/order/receive/processed/w/pt/distribute",
@@ -190,7 +190,6 @@ define('module/interface', [], function() {
                 batchCheckPacket: "/v2/shop/packet/w/batchCheck",
                 batchSavePacket: "/v2/shop/packet/w/batchUpdate",
                 batchSaveDrugQuality: "/v2/shop/drugQuality/w/batchUpdate",
-                judgeShowCommitment: "/v2/shop/drugQuality/r/getAgreementType",
                 checkModifyAuth: "/v2/shop/businessStatus/r/checkPoiContain"
             },
             changeAccountPwd: "/v2/shop/accountSettings/w/changePassword",
@@ -3882,8 +3881,8 @@ define("module/order/order_map", ["lib/GDMap.source", "module/interface", "widge
                 zoom: 13,
                 container: "j-map-container"
             }).addToolBar(),
-            this.thismap.addMarker(this.poiPoint, '<img src="/static/6295ff36/imgs/customer.png" /><span style="color:#2a2a2a;white-space:nowrap;background: #fff;padding: 0 3px;">' + i + "</span>"),
-            this.thismap.addMarker(this.orderPoint, '<img src="/static/6295ff36/imgs/user.png" /><span style="color:#2a2a2a;white-space:nowrap;background: #fff;z-index:99;padding: 0 3px;">顾客地址：' + n + "</span>"),
+            this.thismap.addMarker(this.poiPoint, '<img src="/static/62416314/imgs/customer.png" /><span style="color:#2a2a2a;white-space:nowrap;background: #fff;padding: 0 3px;">' + i + "</span>"),
+            this.thismap.addMarker(this.orderPoint, '<img src="/static/62416314/imgs/user.png" /><span style="color:#2a2a2a;white-space:nowrap;background: #fff;z-index:99;padding: 0 3px;">顾客地址：' + n + "</span>"),
             ("1003" == o || "0000" == o) && this.loadMap(a)
         },
         geocoder: function(a, t) {
@@ -4768,25 +4767,25 @@ define("module/order/check_delivery_map", ["lib/GDMap.source", "module/interface
                 container: "j-map-container"
             }).addToolBar(),
             this.isDeliverClickArrival && i && (this.deliverArrivalPoint = new AMap.LngLat(i.longitude / 1e6,i.latitude / 1e6),
-            this.map.addMarker(this.deliverArrivalPoint, '<div class="deliver-arrival-wrap"><img class="deliver-arrival-station" src="/static/6295ff36/imgs/deliver_arrival_tip.png" alt=""></div>', null, null, {
+            this.map.addMarker(this.deliverArrivalPoint, '<div class="deliver-arrival-wrap"><img class="deliver-arrival-station" src="/static/62416314/imgs/deliver_arrival_tip.png" alt=""></div>', null, null, {
                 x: -80,
                 y: -70
             })),
             t ? this.deliverPoint && this.map.addMarker(this.deliverPoint, '<div class="map-deliver-img"><img src="' + t + '" /></div>', null, null, {
                 x: -37,
                 y: -90
-            }) : this.deliverPoint && this.map.addMarker(this.deliverPoint, '<img class="deliver-map-img" src="/static/6295ff36/imgs/deliver.png" />', null, null, {
+            }) : this.deliverPoint && this.map.addMarker(this.deliverPoint, '<img class="deliver-map-img" src="/static/62416314/imgs/deliver.png" />', null, null, {
                 x: -39,
                 y: -90
             }),
-            this.map.addMarker(this.orderPoint, '<img class="user-map-img" src="/static/6295ff36/imgs/user.png" />', null, null, {
+            this.map.addMarker(this.orderPoint, '<img class="user-map-img" src="/static/62416314/imgs/user.png" />', null, null, {
                 x: -30,
                 y: -60
             }),
             e ? this.map.addMarker(this.poiPoint, '<div class="map-img"><img src="' + e + '" /></div>', null, null, {
                 x: -28,
                 y: -68
-            }) : this.map.addMarker(this.poiPoint, '<img class="user-map-img" src="/static/6295ff36/imgs/customer.png" />', null, null, {
+            }) : this.map.addMarker(this.poiPoint, '<img class="user-map-img" src="/static/62416314/imgs/customer.png" />', null, null, {
                 x: -30,
                 y: -60
             }),
@@ -5651,7 +5650,7 @@ define("module/order/order_charge_init", ["module/cookie", "module/interface", "
                             s.length > 0 ? s[0].chargeAmount : 0
                         }
                         function l() {
-                            return '<div class="posa list-payment" style="display:none"><div class="list-content">' + v.map(function(i) {
+                            return '<div class="posa list-payment" style="display:none"><div class="list-content">' + p.map(function(i) {
                                 return "<p><span>" + i.text + "</span><span>￥" + i.num + "</span></p>"
                             }).join("") + "</div></div> : "
                         }
@@ -5662,8 +5661,8 @@ define("module/order/order_charge_init", ["module/cookie", "module/interface", "
                           , c = t.data("pickType")
                           , o = a.data("agent-or-direct-poi")
                           , r = ""
-                          , p = i.dataStatus && 1 == i.dataStatus
-                          , v = [{
+                          , v = i.dataStatus && 1 == i.dataStatus
+                          , p = [{
                             text: "商保理赔：",
                             num: i.insuranceActAmount
                         }, {
@@ -5677,7 +5676,7 @@ define("module/order/order_charge_init", ["module/cookie", "module/interface", "
                             var f = "1003" == i.shippingType || "0000" == i.shippingType
                               , u = i.riderPay
                               , r = '<div class="charge-info  order-m-t J-charge-info-box">';
-                            if (r += '<p class="clearfix"><span class="pull-left"><strong>小计</strong></span><strong class="pull-right">' + (p ? "计算中" : "&yen;" + i.foodAmount.toFixed(2)) + "</strong></p>",
+                            if (r += '<p class="clearfix"><span class="pull-left"><strong>小计</strong></span><strong class="pull-right">' + (v ? "计算中" : "&yen;" + i.foodAmount.toFixed(2)) + "</strong></p>",
                             u && t.find(".J-part-refund").remove(),
                             t.find(".J-degree-area").hide(),
                             i.giftDetails && i.giftDetails.length) {
@@ -5688,12 +5687,12 @@ define("module/order/order_charge_init", ["module/cookie", "module/interface", "
                                 d.append(g)
                             }
                             if (i.activityDetails && i.activityDetails.length && (r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">商家活动支出</span>',
-                            p || (r += '<i class="fa fa-question-circle font-14 J-check-details"></i>'),
+                            v || (r += '<i class="fa fa-question-circle font-14 J-check-details"></i>'),
                             r += '<div class="posa list-detail" style="display:none"><div class="list-item">',
                             i.activityDetails.forEach(function(i) {
-                                r += '<div class="clearfix mb5"><span class="pull-left">' + i.chargeDesc + '</span><span class="pull-right">' + (p ? "计算中" : "-&yen;" + i.chargeAmount.toFixed(2)) + "</span></div>"
+                                r += '<div class="clearfix mb5"><span class="pull-left">' + i.chargeDesc + '</span><span class="pull-right">' + (v ? "计算中" : "-&yen;" + i.chargeAmount.toFixed(2)) + "</span></div>"
                             }),
-                            r += '</div><div class="clearfix list-total mt10"><strong class="pull-left">总计</strong><strong class="pull-right">' + (p ? "计算中" : "-&yen;" + i.activityAmount.toFixed(2)) + '</strong></div><div class="arrows posa"></div></div></div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + i.activityAmount.toFixed(2)) + "</div></div>"),
+                            r += '</div><div class="clearfix list-total mt10"><strong class="pull-left">总计</strong><strong class="pull-right">' + (v ? "计算中" : "-&yen;" + i.activityAmount.toFixed(2)) + '</strong></div><div class="arrows posa"></div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + i.activityAmount.toFixed(2)) + "</div></div>"),
                             i.commisionDetails && i.commisionDetails.length) {
                                 var m = "平台服务费";
                                 if (1 == c && 2 == o && (m = "平台使用费"),
@@ -5701,21 +5700,21 @@ define("module/order/order_charge_init", ["module/cookie", "module/interface", "
                                     var h = "复诊开方及处方流转等技术服务";
                                 if (2 === i.chargeMode)
                                     e() > 0 && (r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">' + m + "</span> ",
-                                    p || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
-                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item J-charge-tip"></div><div class="list-content J-charge-content"></div></div></div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + e().toFixed(2)) + "</div></div>"),
+                                    v || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
+                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item J-charge-tip"></div><div class="list-content J-charge-content"></div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + e().toFixed(2)) + "</div></div>"),
                                     e("技术服务费_处方") > 0 && (r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">平台服务费2</span>',
-                                    p || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
-                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item">' + h + '</div></div></div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + e("技术服务费_处方").toFixed(2)) + "</div></div>"),
+                                    v || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
+                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item">' + h + '</div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + e("技术服务费_处方").toFixed(2)) + "</div></div>"),
                                     r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">履约服务费</span>',
-                                    p || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
-                                    r += '<div class="posa list-detail" style="display:none;width: 280px;right: -220px"><div class="list-item"><p>每笔订单按照约定的金额收取履约服务费</p>' + (i.isEcMonthlySettle ? "<p>参考金额，订单结算不进行扣除，以实际月结数据为准</p>" : "") + "</div></div>" + (i.isEcMonthlySettle ? '<span class="monthlySettle">月结</span>' : "") + '</div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + i.agreementAmount.toFixed(2)) + "</div></div>";
+                                    v || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
+                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item">每笔订单按照约定的金额收取履约服务费</div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + i.agreementAmount.toFixed(2)) + "</div></div>";
                                 else if (6 === i.chargeMode || 7 === i.chargeMode || 8 === i.chargeMode) {
                                     e() > 0 && (r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">' + m + "</span> ",
-                                    p || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
-                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item J-charge-tip"></div><div class="list-content J-charge-content"></div></div></div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + e().toFixed(2)) + "</div></div>"),
+                                    v || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
+                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item J-charge-tip"></div><div class="list-content J-charge-content"></div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + e().toFixed(2)) + "</div></div>"),
                                     e("技术服务费_处方") > 0 && (r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">平台服务费2</span> ',
-                                    p || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
-                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item">' + h + '</div></div></div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + e("技术服务费_处方").toFixed(2)) + "</div></div>");
+                                    v || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
+                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item">' + h + '</div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + e("技术服务费_处方").toFixed(2)) + "</div></div>");
                                     var y = "";
                                     i.agreementCalRuleVO && (i.agreementCalRuleVO.baseFee && (y += '<div class="clearfix list"><div class="pull-left posr">基础价格</div><div class="pull-right">&yen;' + i.agreementCalRuleVO.baseFee.toFixed(2) + "</div></div>"),
                                     i.agreementCalRuleVO.distanceFeeVO && i.agreementCalRuleVO.distanceFeeVO.totalFee > 0 && (y += '<div class="clearfix list"><div>距离收费(阶梯计费)</div><div class="pull-left posr">导航距离' + i.agreementCalRuleVO.distanceFeeVO.distance.toFixed(2) + '公里</div><div class="pull-right">&yen;' + i.agreementCalRuleVO.distanceFeeVO.totalFee.toFixed(2) + "</div></div>",
@@ -5738,63 +5737,58 @@ define("module/order/order_charge_init", ["module/cookie", "module/interface", "
                                     })),
                                     i.agreementCalRuleVO.categoryFee && (y += '<div class="clearfix list"><div class="pull-left posr">品类收费</div><div class="pull-right">&yen;' + i.agreementCalRuleVO.categoryFee.toFixed(2) + "</div></div>")),
                                     r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">履约服务费</span>',
-                                    p || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
+                                    v || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
                                     r += '<div class="posa list-detail" style="display:none; width: 360px; right: -335px"><div class="list-item">',
                                     7 !== i.chargeMode && 8 !== i.chargeMode && (r += '<span class="dpib mb10 font-bold">履约服务费=【基础价格 + 距离收费 + 重量收费 + 时段增值收费 + 节假日收费 +  品类收费 】</span>'),
-                                    i.isEcMonthlySettle && (r += '<span class="dpib mb10">参考金额，订单结算不进行扣除，以实际月结数据为准</span>'),
-                                    r += y + "</div></div>" + (i.isEcMonthlySettle ? '<span class="monthlySettle">月结</span>' : "") + '</div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + i.agreementAmount.toFixed(2)) + "</div></div>"
+                                    r += y + '</div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + i.agreementAmount.toFixed(2)) + "</div></div>"
                                 } else
                                     e() > 0 && (r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">' + m + "</span> ",
-                                    p || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
-                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item J-charge-tip"></div><div class="list-content J-charge-content"></div></div></div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + e().toFixed(2)) + "</div></div>"),
+                                    v || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
+                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item J-charge-tip"></div><div class="list-content J-charge-content"></div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + e().toFixed(2)) + "</div></div>"),
                                     e("技术服务费_处方") > 0 && (r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">平台服务费2</span> ',
-                                    p || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
-                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item">' + h + '</div></div></div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + e("技术服务费_处方").toFixed(2)) + "</div></div>");
-                                i.shippingRebateAmount > 0 && (r += '<div class="clearfix list"><div class="pull-left color-999">配送费返还</div><div class="pull-right">' + (p ? "计算中" : "&yen;" + i.shippingRebateAmount.toFixed(2)) + "</div></div>")
+                                    v || (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
+                                    r += '<div class="posa list-detail" style="display:none"><div class="list-item">' + h + '</div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + e("技术服务费_处方").toFixed(2)) + "</div></div>");
+                                i.shippingRebateAmount > 0 && (r += '<div class="clearfix list"><div class="pull-left color-999">配送费返还</div><div class="pull-right">' + (v ? "计算中" : "&yen;" + i.shippingRebateAmount.toFixed(2)) + "</div></div>")
                             }
                             i.donateAmount > 0 && (r += '<div class="clearfix list"><div class="pull-left posr"><span class="color-999">店铺环保捐赠</span> ',
-                            '<i class="fa fa-question-circle font-14 J-check-details"></i><div class="posa list-detail" style="display:none"><div class="list-item">商家参与青山捐助计划，每单将捐献一定金额助力环保</div><div class="arrows posa"></div></div></div><div class="pull-right">' + (p ? "计算中" : "-&yen;" + i.donateAmount.toFixed(2)) + "</div></div>"),
-                            f ? (i.shippingAmount > 0 && (r += '<div class="clearfix list"><div class="pull-left color-999">顾客支付配送费</div><div class="pull-right">' + (p ? "计算中" : "&yen;" + i.shippingAmount.toFixed(2)) + "</div></div>"),
+                            '<i class="fa fa-question-circle font-14 J-check-details"></i><div class="posa list-detail" style="display:none"><div class="list-item">商家参与青山捐助计划，每单将捐献一定金额助力环保</div><div class="arrows posa"></div></div></div><div class="pull-right">' + (v ? "计算中" : "-&yen;" + i.donateAmount.toFixed(2)) + "</div></div>"),
+                            f ? (i.shippingAmount > 0 && (r += '<div class="clearfix list"><div class="pull-left color-999">顾客支付配送费</div><div class="pull-right">' + (v ? "计算中" : "&yen;" + i.shippingAmount.toFixed(2)) + "</div></div>"),
                             r += '</div><div class="total order-m-t">',
-                            n ? (r += '<div class="clearfix"><span class="pull-left">本单预计收入</span><span class="pull-right font-20">' + (p ? "计算中" : "&yen;" + i.settleAmount.toFixed(2)) + "</span></div>",
+                            n ? (r += '<div class="clearfix"><span class="pull-left">本单预计收入</span><span class="pull-right font-20">' + (v ? "计算中" : "&yen;" + i.settleAmount.toFixed(2)) + "</span></div>",
                             i.userPayTotalAmount && (r += '<div class="clearfix font-12 color-999">本单顾客实际支付',
                             i.insuranceActAmount && (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
                             r += l(),
-                            r += (p ? "计算中" : "&yen;" + (i.userPayTotalAmount + i.insuranceActAmount).toFixed(2)) + '<span class="c-green">（已支付）</span><span id="medicare-' + i.wmOrderViewIdStr + '"></span></div>')) : (r += '<div class="clearfix"><span class="pull-left">本单顾客支付</span><span class="pull-right font-20">' + (p ? "计算中" : "&yen;" + i.userPayAmount.toFixed(2)) + "</span></div>",
-                            i.offlineOrderSkPayAmount && (r += '<div class="clearfix"><span class="pull-left">本单平台支付</span><span class="pull-right font-20">' + (p ? "计算中" : "&yen;" + i.offlineOrderSkPayAmount.toFixed(2)) + "</span></div>")),
-                            r += "</div>") : (u || n || (r += '<div class="clearfix list"><div class="pull-left color-999">顾客支付配送费</div><div class="pull-right">' + (p ? "计算中" : "&yen;" + i.shippingAmount.toFixed(2)) + "</div></div>"),
+                            r += (v ? "计算中" : "&yen;" + (i.userPayTotalAmount + i.insuranceActAmount).toFixed(2)) + '<span class="c-green">（已支付）</span><span id="medicare-' + i.wmOrderViewIdStr + '"></span></div>')) : (r += '<div class="clearfix"><span class="pull-left">本单顾客支付</span><span class="pull-right font-20">' + (v ? "计算中" : "&yen;" + i.userPayAmount.toFixed(2)) + "</span></div>",
+                            i.offlineOrderSkPayAmount && (r += '<div class="clearfix"><span class="pull-left">本单平台支付</span><span class="pull-right font-20">' + (v ? "计算中" : "&yen;" + i.offlineOrderSkPayAmount.toFixed(2)) + "</span></div>")),
+                            r += "</div>") : (u || n || (r += '<div class="clearfix list"><div class="pull-left color-999">顾客支付配送费</div><div class="pull-right">' + (v ? "计算中" : "&yen;" + i.shippingAmount.toFixed(2)) + "</div></div>"),
                             r += '</div><div class="total order-m-t">',
-                            u ? r += '<div class="clearfix"><span class="pull-left">本单骑手应付</span><span class="pull-right font-20">' + (p ? "计算中" : "&yen;" + i.settleAmount.toFixed(2)) + "</span></div>" : n ? (r += '<div class="clearfix"><span class="pull-left">本单预计收入</span><span class="pull-right font-20">' + (p ? "计算中" : "&yen;" + i.settleAmount.toFixed(2)) + "</span></div>",
+                            u ? r += '<div class="clearfix"><span class="pull-left">本单骑手应付</span><span class="pull-right font-20">' + (v ? "计算中" : "&yen;" + i.settleAmount.toFixed(2)) + "</span></div>" : n ? (r += '<div class="clearfix"><span class="pull-left">本单预计收入</span><span class="pull-right font-20">' + (v ? "计算中" : "&yen;" + i.settleAmount.toFixed(2)) + "</span></div>",
                             i.userPayTotalAmount && (r += '<div class="clearfix font-12 color-999">本单顾客实际支付',
                             i.insuranceActAmount && (r += '<i class="fa fa-question-circle font-14 J-check-details tip"></i>'),
                             r += l(),
-                            r += (p ? "计算中" : "&yen;" + (i.userPayTotalAmount + i.insuranceActAmount).toFixed(2)) + '<span class="c-green">（已支付）</span><span id="medicare-' + i.wmOrderViewIdStr + '"></span></div>')) : (r += '<div class="clearfix"><span class="pull-left">本单顾客支付</span><span class="pull-right font-20">' + (p ? "计算中" : "&yen;" + i.userPayAmount.toFixed(2)) + "</span></div>",
-                            i.offlineOrderSkPayAmount && (r += '<div class="clearfix"><span class="pull-left">本单平台支付</span><span class="pull-right font-20">' + (p ? "计算中" : "&yen;" + i.offlineOrderSkPayAmount.toFixed(2)) + "</span></div>")),
+                            r += (v ? "计算中" : "&yen;" + (i.userPayTotalAmount + i.insuranceActAmount).toFixed(2)) + '<span class="c-green">（已支付）</span><span id="medicare-' + i.wmOrderViewIdStr + '"></span></div>')) : (r += '<div class="clearfix"><span class="pull-left">本单顾客支付</span><span class="pull-right font-20">' + (v ? "计算中" : "&yen;" + i.userPayAmount.toFixed(2)) + "</span></div>",
+                            i.offlineOrderSkPayAmount && (r += '<div class="clearfix"><span class="pull-left">本单平台支付</span><span class="pull-right font-20">' + (v ? "计算中" : "&yen;" + i.offlineOrderSkPayAmount.toFixed(2)) + "</span></div>")),
                             r += "</div>")
                         } else if (1 === i.degreeStatus) {
                             var x = t.data("deliveryCode")
                               , f = "1003" == x || "0" == x || "0000" == x
                               , u = i.riderPayment > 0
-                              , r = '<div class="charge-info pr20 border-t"><p class="clearfix font-12 color-333"><span class="pull-left"><strong>小计</strong></span><span class="pull-right">' + (p ? "计算中" : "&yen;" + i.totalBefore.toFixed(2)) + "</span></p>";
+                              , r = '<div class="charge-info pr20 border-t"><p class="clearfix font-12 color-333"><span class="pull-left"><strong>小计</strong></span><span class="pull-right">' + (v ? "计算中" : "&yen;" + i.totalBefore.toFixed(2)) + "</span></p>";
                             u && t.find(".J-part-refund").remove(),
                             t.find(".J-degree-area").show(),
                             i.activity && i.activity.length && i.activity.forEach(function(i) {
                                 r += '<div class="clearfix list font-12 color-666"><div class="pull-left">' + (i.giftName ? i.giftName : "") + "[" + i.actDesc + "]</div>",
-                                i.actPrice && (r += '<div class="pull-right">' + (p ? "计算中" : "-&yen;" + i.actPrice.toFixed(2)) + "</div>"),
+                                i.actPrice && (r += '<div class="pull-right">' + (v ? "计算中" : "-&yen;" + i.actPrice.toFixed(2)) + "</div>"),
                                 r += "</div>"
                             }),
-                            i.shippingAmount > 0 && (r += '<div class="clearfix list font-12 color-666"><div class="pull-left">顾客支付配送费</div><div class="pull-right">' + (p ? "计算中" : "&yen;" + i.shippingAmount.toFixed(2)) + "</div></div>"),
-                            i.shippingRebateAmount > 0 && (r += '<div class="clearfix list font-12 color-666"><div class="pull-left">配送费返还</div><div class="pull-right">' + (p ? "计算中" : "&yen;" + i.shippingRebateAmount.toFixed(2)) + "</div></div>"),
+                            i.shippingAmount > 0 && (r += '<div class="clearfix list font-12 color-666"><div class="pull-left">顾客支付配送费</div><div class="pull-right">' + (v ? "计算中" : "&yen;" + i.shippingAmount.toFixed(2)) + "</div></div>"),
+                            i.shippingRebateAmount > 0 && (r += '<div class="clearfix list font-12 color-666"><div class="pull-left">配送费返还</div><div class="pull-right">' + (v ? "计算中" : "&yen;" + i.shippingRebateAmount.toFixed(2)) + "</div></div>"),
                             f ? (r += '</div><div class="total border-t pr20 color-333">',
-                            r += n ? '<div class="clearfix"><div class="pull-left posr"><strong class="pull-left" style="margin-right:2px">顾客在线支付</strong><i class="fa fa-question-circle font-14 J-check-details"></i><div class="posa list-detail" style="display:none"><div class="list-item">因订单已超过45天，商家活动支出等结算数据请移步“财务管理—账单对账”页面查看”</div><div class="arrows posa"></div></div></div><strong class="pull-right">' + (p ? "计算中" : "&yen;" + i.totalAfter.toFixed(2)) + "</strong></div>" : '<div class="clearfix"><strong class="pull-left">本单顾客应付</strong><strong class="pull-right">' + (p ? "计算中" : "&yen;" + i.totalAfter.toFixed(2)) + "</strong></div>",
+                            r += n ? '<div class="clearfix"><div class="pull-left posr"><strong class="pull-left" style="margin-right:2px">顾客在线支付</strong><i class="fa fa-question-circle font-14 J-check-details"></i><div class="posa list-detail" style="display:none"><div class="list-item">因订单已超过45天，商家活动支出等结算数据请移步“财务管理—账单对账”页面查看”</div><div class="arrows posa"></div></div></div><strong class="pull-right">' + (v ? "计算中" : "&yen;" + i.totalAfter.toFixed(2)) + "</strong></div>" : '<div class="clearfix"><strong class="pull-left">本单顾客应付</strong><strong class="pull-right">' + (v ? "计算中" : "&yen;" + i.totalAfter.toFixed(2)) + "</strong></div>",
                             r += "</div>") : (r += '</div><div class="total border-t pr20 color-333">',
-                            r += u ? '<div class="clearfix"><strong class="pull-left">本单骑手应付</strong><strong class="pull-right">' + (p ? "计算中" : "&yen;" + i.riderPayment.toFixed(2)) + "</strong></div>" : n ? '<div class="clearfix"><div class="pull-left posr"><strong class="pull-left" style="margin-right:2px">顾客在线支付</strong><i class="fa fa-question-circle font-14 J-check-details"></i><div class="posa list-detail" style="display:none"><div class="list-item">因订单已超过45天，商家活动支出等结算数据请移步“财务管理—账单对账”页面查看”</div><div class="arrows posa"></div></div></div><strong class="pull-right">' + (p ? "计算中" : "&yen;" + i.totalAfter.toFixed(2)) + "</strong></div>" : '<div class="clearfix"><strong class="pull-left">本单顾客应付</strong><strong class="pull-right">' + (p ? "计算中" : "&yen;" + i.totalAfter.toFixed(2)) + "</strong></div>",
+                            r += u ? '<div class="clearfix"><strong class="pull-left">本单骑手应付</strong><strong class="pull-right">' + (v ? "计算中" : "&yen;" + i.riderPayment.toFixed(2)) + "</strong></div>" : n ? '<div class="clearfix"><div class="pull-left posr"><strong class="pull-left" style="margin-right:2px">顾客在线支付</strong><i class="fa fa-question-circle font-14 J-check-details"></i><div class="posa list-detail" style="display:none"><div class="list-item">因订单已超过45天，商家活动支出等结算数据请移步“财务管理—账单对账”页面查看”</div><div class="arrows posa"></div></div></div><strong class="pull-right">' + (v ? "计算中" : "&yen;" + i.totalAfter.toFixed(2)) + "</strong></div>" : '<div class="clearfix"><strong class="pull-left">本单顾客应付</strong><strong class="pull-right">' + (v ? "计算中" : "&yen;" + i.totalAfter.toFixed(2)) + "</strong></div>",
                             r += "</div>")
                         }
-                        (i.newTagSet || []).indexOf(36) > -1 && (t.find(".order-ope .J-part-refund").prop("disabled", !0).attr("title", "团好药订单不支持该操作"),
-                        t.find(".order-ope .J-cancel-order").prop("disabled", !0).attr("title", "团好药订单不支持该操作"),
-                        t.find(".product-info .posa.order-des").hide(),
-                        r += '<div class="posa tuanhaoyao-icon"></div>'),
                         a.html(r),
                         i.activityDetails && i.activityDetails.length || i.commisionDetails && i.commisionDetails.length || f && i.shippingAmount || i.donateAmount > 0 || a.find(".J-charge-info-box").hide()
                     }),
@@ -7186,7 +7180,7 @@ define("widgets/im_tip", ["module/interface", "util/utils", "module/cookie", "wi
         -1 != s && g && "false" == n && (!hasShowDialogList || -1 === hasShowDialogList.indexOf(s))) {
             i({
                 title: "",
-                content: '<img src="/static/6295ff36/imgs/imTips.webp" style="width: 360px;">',
+                content: '<img src="/static/62416314/imgs/imTips.webp" style="width: 360px;">',
                 btns: [{
                     txt: "立即开启",
                     fn: function() {
@@ -9435,7 +9429,7 @@ define("module/order/order_refund_clothes_init", ["widgets/lazyload", "module/co
                 var i = function() {
                     t.refundFoodItemInfoList.forEach(function(e, a) {
                         var s = e.detail_id
-                          , n = "/static/6295ff36/imgs/orderImg.webp";
+                          , n = "/static/62416314/imgs/orderImg.webp";
                         d[e.wm_food_id] && (n = d[e.wm_food_id] || n),
                         o[s] || (o[s] = {
                             common: '<img class="mt5 pull-left" src="' + n + '" width=50 height=50><div><span class="dpib">' + e.food_name + '</span><br><span class="dpib c-red">￥' + e.food_price + '</span><br><span class="weight-refund-item-tip dpib">申请退差价$count份，最多退￥$price</span></div>',
@@ -9496,7 +9490,7 @@ define("module/order/order_refund_part", ["module/cookie", "module/interface", "
                         if (0 === t.marking && o.length) {
                             var n = '<div class="part-refund"><h4>选择退款商品</h4><ul class="part-refund-list">';
                             o.forEach(function(e, t) {
-                                if (n += '<li class="item J-item clearfix" data-item-id="' + e.itemId + '" data-wm-food-id="' + e.wmFoodId + '"><label class="label-checkbox inline pull-left"><input type="checkbox" class="J-checkbox" data-view-id="' + d + '" data-poi-id="' + l + '"><span class="custom-checkbox"></span></label><img src="' + (e.imageUrl ? e.imageUrl : "/static/6295ff36/imgs/orderImg.webp") + '" alt="商品图片" class="pull-left"><div class="pull-left food-name" title="' + e.foodName + '">',
+                                if (n += '<li class="item J-item clearfix" data-item-id="' + e.itemId + '" data-wm-food-id="' + e.wmFoodId + '"><label class="label-checkbox inline pull-left"><input type="checkbox" class="J-checkbox" data-view-id="' + d + '" data-poi-id="' + l + '"><span class="custom-checkbox"></span></label><img src="' + (e.imageUrl ? e.imageUrl : "/static/62416314/imgs/orderImg.webp") + '" alt="商品图片" class="pull-left"><div class="pull-left food-name" title="' + e.foodName + '">',
                                 e.originFoodPrice !== e.foodPrice && (n += '<span class="font-12">折</span>'),
                                 n += e.foodName + '</div><div class="pull-left food-num color-999">x' + e.count + '</div><div class="pull-left food-price">￥' + e.refundPrice + '</div><div class="pull-right food-refund-num J-food-refund-num posr"><span class="num-sub color-666 posa font-18 disabled J-num-ope J-num-sub">-</span><input type="text" value="1" class="num J-num form-control" data-max="' + e.count + '">',
                                 n += 1 === e.count ? '<span class="num-add color-666 posa disabled" data-max="' + e.count + '">+</span>' : '<span class="num-add color-666 posa J-num-ope J-num-add" data-max="' + e.count + '">+</span>',
@@ -9574,12 +9568,12 @@ define("module/order/order_refund_part", ["module/cookie", "module/interface", "
                             n.forEach(function(e, t) {
                                 var a = e.unitRefundItemRecord || []
                                   , i = e.count <= a.length;
-                                u += '<li class="item J-weight-item-1 clearfix" data-item-id="' + e.itemId + '" data-wm-food-id="' + e.wmFoodId + '"><label class="label-checkbox inline pull-left"><input type="checkbox" class="J-weight-checkbox"' + (i ? " disabled" : "") + '><span class="custom-checkbox"></span></label><img src="' + (e.imageUrl ? e.imageUrl : "/static/6295ff36/imgs/orderImg.webp") + '" alt="商品图片" class="pull-left"><div class="pull-left"><div class="food-name" title="' + e.foodName + '">',
+                                u += '<li class="item J-weight-item-1 clearfix" data-item-id="' + e.itemId + '" data-wm-food-id="' + e.wmFoodId + '"><label class="label-checkbox inline pull-left"><input type="checkbox" class="J-weight-checkbox"' + (i ? " disabled" : "") + '><span class="custom-checkbox"></span></label><img src="' + (e.imageUrl ? e.imageUrl : "/static/62416314/imgs/orderImg.webp") + '" alt="商品图片" class="pull-left"><div class="pull-left"><div class="food-name" title="' + e.foodName + '">',
                                 e.originFoodPrice !== e.foodPrice && (u += '<span class="font-12">折</span>'),
                                 u += e.foodName + '</div><div class="refund-tip">最多退商品实付价¥' + e.totalActivityPrice + '</div></div><div class="pull-right food-price c-red">￥' + e.refundPrice + '</div><div class="pull-right food-num color-999">x' + e.count + "</div>";
                                 var o = 0
                                   , n = "<div class='tal'><div class='font-14' style='margin-bottom: 15px'>共退差价 <span class='c-red sum'>$sum</span></div><div class='mb5'>" + e.foodName + "</div>"
-                                  , s = e.imageUrl ? e.imageUrl : "/static/6295ff36/imgs/orderImg.webp";
+                                  , s = e.imageUrl ? e.imageUrl : "/static/62416314/imgs/orderImg.webp";
                                 p += '<li class="item J-weight-item-2 clearfix" data-item-id="' + e.itemId + '" data-wm-food-id="' + e.wmFoodId + '" data-food-name="' + e.foodName + '" data-unit-count="' + e.count + '" data-food-price="' + e.foodPrice + '" data-image-url="' + s + '" style="display:none"><img src="' + s + '" alt="商品图片" class="mt5 pull-left"><div><span class="dpib">' + e.foodName + '</span><br><span class="mr10 dpib color-999">x' + e.count + '</span><span class="c-red">￥' + e.foodPrice + '</span><br><span class="refund-tip">最多退商品实付价¥' + e.totalActivityPrice + "</span></div>",
                                 p += '<div class="mt10 form-inline">';
                                 var d = 0;
@@ -10437,7 +10431,7 @@ define("module/order/order_list_dom", ["module/order/order_list_dom_time", "modu
         h += '<div class="user-info"><div class="user-name font-12 color-999"><span class="j-user-nick-name color-333 font-20">' + (o.recipient_name || "美团客人") + "</span>" + (o.is_poi_first_order ? "<span>#门店新客</span>" : '<span class="J-order-num"></span>') + '<span class="J-favorite" style="display:none">#收藏店铺</span>' + (!_ || -1 != u && o.wm_poi_id != u ? "" : '<button class="btn btn-default btn-sm pull-right hide posr start-chat J-start-chat">发起聊天 <b class="tips posa hide J-chat-tips"></b></button>') + (J ? '<button class="btn btn-default btn-sm pull-right posr start-chat J-order-detail">处方订单</button>' : "") + '</div><div class="color-999 mb5 hide J-privacy-record"><i class="fa fa-custom-info-warn"></i> 为保证服务体验，您在拨打或者接听隐私号电话时，可能会被录音</div><div class="user-phone-address J-user-phone-address">' + e(o) + '</div><div class="J-changed-client-info" style="display: none"><div class="color-main font-20 J-changed-address-title"">新地址</div><div class="user-name-changed font-12 color-999""><span class="J-user-nick-name-changed color-333 font-20"></span>' + (!_ || -1 != u && o.wm_poi_id != u ? "" : '<button class="btn btn-default btn-sm pull-right hide posr start-chat J-start-chat">发起聊天 <b class="tips posa hide J-chat-tips"></b></button>') + '</div><div class="color-999 mb5 hide J-privacy-record"><i class="fa fa-custom-info-warn"></i> 为保证服务体验，您在拨打或者接听隐私号电话时，可能会被录音</div><div class="user-phone-address J-user-phone-address-changed" style="margin-bottom: 10px"></div></div><div class="color-333 font-16 J-change-address-title" style="display: none; margin-bottom: 10px">修改地址审核</div><button type="button" class="btn btn-primary btn-sm J-agree-change-address" style="display: none;">同意修改</button><button type="button" class="btn btn-default btn-sm J-refuse-change-address" style="display: none; margin-left: 10px">拒绝修改</button></div>',
         0 !== o.showPrePhoneType && (h += '<div class="user-info" data-type="order"><div class="user-name font-12 color-999"><span class="color-333 font-20">预订人</span><span>' + o.pre_tag + '</span></div><div class="user-phone-address J-order-user-phone">' + s(o) + "</div></div>"),
         h += '<div class="order-line"><div class="ball left-ball"></div><div class="ball right-ball"></div></div>',
-        false && o.is_b2c_order && "v2" === o.b2cOrderVersion)
+        false)
             h += '<div class="user-info"><div>医药B2C订单，请移步到新版本查看，<span class="new-b2c-order">点击前往 &gt;</span></div><div>新版本进入路径：右上角切换为“单店模式”；左侧菜单从订单管理进入“医药B2C订单”</div></div>';
         else {
             var g = "food" == CommConstants.shopCate ? "备餐" : "拣货";
@@ -12302,26 +12296,370 @@ define("module/order/order_list", ["module/printer", "module/order/printorder", 
 });
 require.config({
     baseUrl: VM.STATIC_URL,
+    paths: {}
+}),
+define('components/cascader_select', [], function() {
+    return {
+        props: {
+            value: {
+                "default": -1
+            },
+            options: {
+                type: Object,
+                "default": function() {
+                    return {}
+                }
+            }
+        },
+        data: function() {
+            return {
+                city: "全国",
+                query: "",
+                poi: -1,
+                poiProps: {
+                    label: "name",
+                    value: "wm_poi_id"
+                },
+                isFocus: !1,
+                width: "76px"
+            }
+        },
+        computed: {
+            cityList: function() {
+                var i = [];
+                i.push({
+                    label: "全国",
+                    value: "全国"
+                });
+                var t = 0;
+                for (var e in this.options) {
+                    var o = this.options[e].length;
+                    t += o,
+                    i.push({
+                        label: e,
+                        value: e,
+                        count: o
+                    })
+                }
+                return i[0].count = t,
+                i.sort(function(i, t) {
+                    return t.count - i.count
+                })
+            },
+            poiMap: function() {
+                var i = [];
+                i.push({
+                    name: "全部门店",
+                    wm_poi_id: -1,
+                    status: 1
+                });
+                for (var t in this.options)
+                    i = i.concat(this.options[t]);
+                return $.extend({
+                    "全国": i
+                }, this.options)
+            }
+        },
+        watch: {
+            value: function(i) {
+                this.poi = i || -1
+            },
+            city: function(i) {
+                var t = this.poiMap[this.city] || [];
+                this.poi = t.length && t[0].wm_poi_id,
+                this.width = 14 * this.city.length + 50 + "px"
+            },
+            poi: function(i) {
+                this.poiChange(i)
+            }
+        },
+        methods: {
+            poiChange: function(i) {
+                this.query = "",
+                this.$emit("input", i),
+                this.$emit("change", i)
+            },
+            getPoiName: function(i) {
+                return i.businessDesc ? i.name + " [" + i.businessDesc + "]" : i.name
+            }
+        },
+        mounted: function() {
+            var i = this;
+            i.poi = this.value,
+            i.$nextTick(function() {
+                var t = i.$refs.poiSelect
+                  , e = t.$refs.kuiSelectInput.$el.querySelector("input");
+                e.addEventListener("focus", function(t) {
+                    i.$refs.poiSelect.filterText = null,
+                    i.isFocus = !0
+                }),
+                e.addEventListener("blur", function(t) {
+                    i.isFocus = !1
+                })
+            })
+        },
+        template: '<div class="cascader-search inline-block"><kui-select class="city-select" :options="cityList" v-model="city" v-if="cityList.length > 2" :style="{ \'width\': width }"></kui-select><kui-select  class="poi-select" :options="poiMap[city]" :props="poiProps" ref="poiSelect"v-model="poi" @change="poiChange" placeholder="输入门店名称即可快速查询" filterable><kui-option v-for="option in poiMap[city]":key="option.wm_poi_id":label="getPoiName(option)":value="option.wm_poi_id":class="{ gray: option.businessDesc !== \'营业中\'}"></kui-option></kui-select><kui-tooltip manual :visible="isFocus">输入门店名称即可快速查询</kui-tooltip></div>'
+    }
+});
+require.config({
+    baseUrl: VM.STATIC_URL,
     waitSeconds: 0
 }),
-require(["module/general", "module/order/order_list", "util/utils"], function(r, e, a) {
-    var o = location.href
-      , s = a.urlParams(o).searchItem
-      , i = a.urlParams(o).fromSLA
-      , u = ""
-      , t = a.urlParams().userId
-      , d = a.urlParams().wmPoiId;
-    u = t && d ? "/sc/order/retail/user/order/history" : "true" === i ? "/v2/order/history/r/search/slaOrder/ajax" : "/v2/order/history/r/search/ajax",
-    e.init({
-        queryUrl: u,
-        getQueryFields: function() {
-            var r = {};
-            return r.getNewVo = 1,
-            t && d ? (r.userId = t,
-            r.wmPoiId = d) : "true" === i ? r.wmOrderViewId = s : r.searchItem = s,
-            r
+require(["module/general", "util/utils", "module/order/order_list", "module/order/order_slidebar", "module/interface", "components/cascader_select", "module/cookie", "module/bridge/bridge_app"], function(e, t, a, o, n, r, i, s) {
+    function c() {
+        var e = t.getOffsetDays(v.val(), f.val())
+          , a = "food" == CommConstants.shopCate
+          , o = a ? 5 : 7
+          , n = a ? "只显示近" + o + "天订单信息，请重新选择日期" : "查询时间段限制在" + o + "天以内，请重新选择日期";
+        return e > o ? (t.showTip(n, "warn"),
+        !1) : !0
+    }
+    function l() {
+        a.init({
+            page: "history",
+            queryUrl: n.order.queryHisOrderList,
+            getQueryFields: function() {
+                var e = {};
+                return e.wmPoiId = u,
+                e.acctId = d,
+                e.brandId = parseInt(i.getCookie("brandId") || 0),
+                e.isChain = localStorage && localStorage.getItem("isChain"),
+                e.requestWmPoiId = m.poi,
+                e.wmOrderPayType = $('input[name="pay-type"]:checked').val(),
+                e.wmOrderStatus = $('input[name="order-status"]:checked').val(),
+                e.sortField = $('input[name="rank-item"]:checked').val(),
+                e.size = "",
+                e.warehouseId = h.warehouseId,
+                e.lastLabel = w,
+                e.nextLabel = y,
+                e.startDate = v.val() ? v.val() : "",
+                e.endDate = f.val() ? f.val() : "",
+                e.getNewVo = 1,
+                e
+            },
+            bindQueryEvts: function() {
+                var e = $('input[name="pay-type"], input[name="order-status"], input[name="rank-item"]');
+                e.on("click", function(e) {
+                    w = "",
+                    y = "",
+                    c() && l();
+                    var a = e.currentTarget.name
+                      , o = e.currentTarget.value;
+                    "order-status" == a ? t.reportMC("b_shangou_online_e_oppkvbta_mc", "c_nehoktcu", null, null, {
+                        button_nm: o
+                    }) : "pay-type" == a ? t.reportMC("b_shangou_online_e_opahodve_mc", "c_nehoktcu", null, null, {
+                        button_nm: o
+                    }) : "rank-item" == a && t.reportMC("b_shangou_online_e_o7fo1h0g_mc", "c_nehoktcu", null, null, {
+                        button_nm: o
+                    })
+                }),
+                I.on("dp.change", function() {
+                    b = t.changeDate(1),
+                    k.data("DateTimePicker").maxDate(b),
+                    k.data("DateTimePicker").minDate(v.val()),
+                    _.data("DateTimePicker").maxDate(f.val()),
+                    w = "",
+                    y = "",
+                    c() && (t.reportMC("b_shangou_online_e_ndm1fp5b_mc", "c_nehoktcu", null, null, {
+                        select_date: v.val() + "至" + f.val()
+                    }),
+                    l())
+                })
+            },
+            afterLoaded: function() {
+                $(".J-jump-page").removeAttr("disabled"),
+                "" === localStorage.getItem("lastLabel") && $(".J-prev-page").attr("disabled", "disabled"),
+                "" === localStorage.getItem("nextLabel") && $(".J-next-page").attr("disabled", "disabled")
+            }
+        }, !0)
+    }
+    var u = Number(i.getCookie("wmPoiId")) || -1
+      , d = i.getCookie("acctId")
+      , p = i.getCookie("token")
+      , m = new Vue({
+        el: "#poi-wrap",
+        components: {
+            "cascader-select": r
+        },
+        data: {
+            poi: u,
+            options: null
+        },
+        computed: {
+            poiList: function() {
+                var e = [];
+                for (var t in this.options)
+                    e = e.concat(this.options[t]);
+                return e
+            },
+            showPoiWrap: function() {
+                return this.poiList.length > 1
+            },
+            poiName: function() {
+                var e = ""
+                  , t = this;
+                return -1 == t.poi ? "全部门店" : (t.poiList.forEach(function(a) {
+                    return t.poi == a.wm_poi_id ? e = a.name : void 0
+                }),
+                e)
+            }
+        },
+        mounted: function() {
+            this.loadData()
+        },
+        methods: {
+            loadData: function() {
+                var e = this;
+                this.$http.get("/v2/order/history/r/queryCityAndWmPoi").then(function(t) {
+                    var a = t.body;
+                    a.code ? e.$toast.error(a.msg) : e.options = a.data
+                })
+            }
+        },
+        watch: {
+            poi: function(e) {
+                console.log("历史订单选择门店id:", e),
+                w = y = "";
+                try {
+                    h.loadData(e)
+                } catch (a) {
+                    console.log(a)
+                }
+                l(),
+                o.init({
+                    poiId: e,
+                    poiName: this.poiName
+                }),
+                t.reportMC("b_shangou_online_e_jra6cdyz_mc", "c_nehoktcu")
+            }
+        }
+    })
+      , h = new Vue({
+        el: "#warehouse-wrap",
+        components: {},
+        data: {
+            warehouseId: 0,
+            options: []
+        },
+        computed: {
+            showWarehouseWrap: function() {
+                return this.options.length > 1 && m.poi > -1 ? !0 : !1
+            }
+        },
+        mounted: function() {
+            this.loadData()
+        },
+        methods: {
+            handleChange: function(e) {
+                console.log(e),
+                w = "",
+                y = "",
+                c() && l()
+            },
+            loadData: function(e) {
+                var t = this;
+                this.$http.get("/sc/retail/express/get/warehouseInfos", {
+                    params: {
+                        wmPoiId: e || u,
+                        acctId: d
+                    }
+                }).then(function(e) {
+                    var a = e.body;
+                    if (a.code)
+                        t.$toast.error(a.msg);
+                    else {
+                        console.log(a.data);
+                        var o = a.data || [];
+                        t.options = o.map(function(e, t) {
+                            return {
+                                value: e.id,
+                                label: e.name
+                            }
+                        }),
+                        t.options.splice(0, 0, {
+                            value: -1,
+                            label: "全部"
+                        })
+                    }
+                })
+            }
+        }
+    });
+    new Vue({
+        el: "#express-wrap",
+        data: {
+            isSupportExpress: !1
+        },
+        mounted: function() {
+            this.checkExpressAbility()
+        },
+        methods: {
+            checkExpressAbility: function() {
+                var e = this;
+                $.ajax({
+                    type: "GET",
+                    url: n.order.sc.batchDeliveryCapbility,
+                    data: {
+                        acctId: d,
+                        wmPoiId: u,
+                        token: p
+                    },
+                    success: function(t) {
+                        0 == t.code ? e.isSupportExpress = t.data : e.$toast.error(t.msg)
+                    }
+                })
+            },
+            jumpToExpress: function() {
+                s.jumpTo({
+                    href: "/sc/retail/express/uploadinfo"
+                })
+            }
         }
     }),
-    a.reportMC_SG.setCid("c_shangou_online_e_znrurnrc")
+    "flag" === location.search.substring(1) && $(".invalid").prop("checked", !0);
+    var g = localStorage.getItem("orderHisRank");
+    g && $('input[name="rank-item"]').eq(g - 1).prop("checked", !0),
+    $('input[name="rank-item"]').change(function() {
+        localStorage.setItem("orderHisRank", $('input[name="rank-item"]:checked').val())
+    });
+    var v = $("#J-start")
+      , f = $("#J-end")
+      , _ = $(".J-start-date")
+      , k = $(".J-end-date")
+      , b = t.changeDate(1);
+    v.val(b),
+    f.val(b),
+    _.datetimepicker({
+        format: "YYYY-MM-DD",
+        keepOpen: !1,
+        showTodayButton: !0,
+        showClear: !0,
+        maxDate: f.val()
+    }),
+    k.datetimepicker({
+        format: "YYYY-MM-DD",
+        keepOpen: !1,
+        showTodayButton: !0,
+        showClear: !0,
+        minDate: v.val(),
+        maxDate: b
+    });
+    var w = ""
+      , y = ""
+      , I = $(".J-date");
+    c() && l(),
+    $(".J-next-page").click(function() {
+        w = "",
+        y = localStorage.getItem("nextLabel"),
+        c() && l()
+    }),
+    $(".J-prev-page").click(function() {
+        w = localStorage.getItem("lastLabel"),
+        y = "",
+        c() && l()
+    }),
+    t.reportPV("c_nehoktcu", {
+        des: "PC历史订单"
+    })
 });
-define("page/order/search", function() {});
+define("page/order/history", function() {});
