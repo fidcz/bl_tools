@@ -1,5 +1,15 @@
 /*! For license information please see sgIm.umd.688cc113.js.LICENSE.txt */
-!function() {
+!function(e, t) {
+    if ("object" == typeof exports && "object" == typeof module)
+        module.exports = t();
+    else if ("function" == typeof define && define.amd)
+        define([], t);
+    else {
+        var n = t();
+        for (var i in n)
+            ("object" == typeof exports ? exports : e)[i] = n[i]
+    }
+}(window, (function() {
     return function(e) {
         var t = {};
         function n(i) {
@@ -62368,7 +62378,7 @@
             },
             computed: {
                 disableText: function() {
-                    return this.showSetting ? "你已关闭即时通讯功能，请到设置中打开" : this.timeout ? "顾客24小时未回复，本次会话已结束" : this.noOrder ? "订单已完成，会话已结束" : this.medicineClose ? "会话已结束" : this.medicineTimeout ? "会话超时关闭" : ""
+                    return this.showSetting ? "你已关闭即时通讯功能，请到设置中打开" : this.timeout ? "" : this.noOrder ? "" : this.medicineClose ? "" : this.medicineTimeout ? "" : ""
                 },
                 isGroupFileGuideAlways: function() {
                     return 1 != localStorage.getItem(f.k)
@@ -64363,4 +64373,5 @@
         }
     }
     ])
-}();
+}
+));
