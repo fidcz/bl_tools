@@ -56077,7 +56077,7 @@
             }, [n("im-user-header", {
                 attrs: {
                     "avatar-url": e.computedAvatar(e.newMessage.message),
-                    "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
+                    "c-name": JSON.parse(t.extension || "{}").c_name
                 }
             })], 1), e._v(" "), n("div", {
                 staticClass: "wm-im-item-con"
@@ -56325,7 +56325,7 @@
                 }, [n("im-user-header", {
                     attrs: {
                         "avatar-url": e.computedAvatar(t.message),
-                        "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
+                        "c-name": JSON.parse(t.extension || "{}").c_name
                     }
                 }), e._v(" "), !e.computedIsSmartReply(t.message) && t.unreads > 0 ? n("b", {
                     staticClass: "wm-im-bubble font-12 pull-right posa J-unread-num"
@@ -56427,7 +56427,7 @@
                 }, [n("im-user-header", {
                     attrs: {
                         "avatar-url": e.computedAvatar(t.message),
-                        "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
+                        "c-name": JSON.parse(t.extension || "{}").c_name
                     }
                 })], 1), e._v(" "), n("div", {
                     staticClass: "wm-im-item-con"
@@ -56815,7 +56815,7 @@
                 }) : n("im-user-header", {
                     attrs: {
                         "avatar-url": JSON.parse(t.extension || "{}").user_avatar,
-                        "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
+                        "c-name": JSON.parse(t.extension || "{}").c_name
                     }
                 })], 1), e._v(" "), n("div", {
                     staticClass: "content"
@@ -62493,7 +62493,7 @@
                     this.showRateHelp && (this.showRateHelp = !1)
                 },
                 computedName: function(e) {
-                    return e ? e.channelId === this.anonymityChannelId ? "匿名用户" : e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].name : "群聊" : JSON.parse(e.extension || "{}").c_name || "美团客人" : "美团客人"
+                    return e ? e.channelId === this.anonymityChannelId ? "匿名用户" : e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].name : "群聊" : '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname || "美团客人" : "美团客人"
                 },
                 computedIsSmartReply: function(e) {
                     return e ? (e.body && e.body.text ? e.body.text : "").startsWith("[机器人自动回复]") : ""
