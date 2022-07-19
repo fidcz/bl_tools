@@ -56077,7 +56077,7 @@
             }, [n("im-user-header", {
                 attrs: {
                     "avatar-url": e.computedAvatar(e.newMessage.message),
-                    "c-name": JSON.parse(e.newMessage.extension || "{}").c_name
+                    "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
                 }
             })], 1), e._v(" "), n("div", {
                 staticClass: "wm-im-item-con"
@@ -56325,7 +56325,7 @@
                 }, [n("im-user-header", {
                     attrs: {
                         "avatar-url": e.computedAvatar(t.message),
-                        "c-name": JSON.parse(t.message.extension || "{}").c_name
+                        "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
                     }
                 }), e._v(" "), !e.computedIsSmartReply(t.message) && t.unreads > 0 ? n("b", {
                     staticClass: "wm-im-bubble font-12 pull-right posa J-unread-num"
@@ -56427,7 +56427,7 @@
                 }, [n("im-user-header", {
                     attrs: {
                         "avatar-url": e.computedAvatar(t.message),
-                        "c-name": JSON.parse(t.message.extension || "{}").c_name
+                        "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
                     }
                 })], 1), e._v(" "), n("div", {
                     staticClass: "wm-im-item-con"
@@ -62500,7 +62500,7 @@
                 },
                 computedAvatar: function(e) {
                     if (e)
-                        return e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].groupUrl : void 0 : JSON.parse(e.extension || "{}").c_avatar_url
+                        return e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].groupUrl : void 0 : JSON.parse(e.extension || "{}").user_avatar
                 },
                 computedGroupLabels: function(e) {
                     return e && this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].labelList : []
