@@ -56814,8 +56814,8 @@
                     }
                 }) : n("im-user-header", {
                     attrs: {
-                        "avatar-url": JSON.parse(t.extension || "{}").c_avatar_url,
-                        "c-name": JSON.parse(t.extension || "{}").c_name
+                        "avatar-url": JSON.parse(t.extension || "{}").user_avatar,
+                        "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
                     }
                 })], 1), e._v(" "), n("div", {
                     staticClass: "content"
