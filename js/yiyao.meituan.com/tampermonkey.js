@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.30
-// @description  美团替换页面和声音次数,Hook消息0.30
+// @version      0.33
+// @description  美团替换页面和声音次数,Hook消息0.33
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
@@ -18,7 +18,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change ver:0.30');
+    console.log('mt_change ver:0.33');
     unsafeWindow.closeNotify = false;
 
     // 使用本地网站上的version
@@ -28,6 +28,20 @@
     }
     
     const localVer = GM_getValue('mt_js_ver');
+    let myJsUrl = GM_getValue('mt_js_url');
+    if(myJsUrl == undefined){
+        myJsUrl = 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com';
+    }
+    var myJsUrlFrom = '未知';
+    if(myJsUrl.includes('github')){
+        myJsUrlFrom = 'GITHUB';
+    }else if(myJsUrl.includes('coding')){
+        myJsUrlFrom = 'CODING';
+    }else if(myJsUrl.includes('gitee')){
+        myJsUrlFrom = 'GITEE';
+    }
+    console.log('js来源:' +myJsUrlFrom + ',' + myJsUrl);
+
     if(localVer == undefined && reVer != null){
         GM_setValue('mt_js_ver', reVer[1]);
     }else if(localVer != undefined && reVer == null){
@@ -43,7 +57,7 @@
 
     console.log('myJs: jsVer:'+jsVersion);
 
-    const myJsUrl = 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com';
+    
     const replaceJsUrl = [
         '/static/' + jsVersion + '/js/page/root.js',
         '/static/' + jsVersion + '/js/page/order/search.js',
@@ -52,10 +66,18 @@
         '/static/' + jsVersion + '/js/page/order/refund/unprocessed.js'
     ];
 
+    const replaceJsTo = {
+        'sg_im': '/health-static/sgIm.umd.688cc113.js'
+    }
+
     require = function(a,b,c,d){
         //console.log('myJs Req');
         //console.log(a,b,c,d);
-        if (replaceJsUrl.includes(a[0])){
+        if (a[0] in replaceJsTo){
+            // 内部命名规则
+            console.log('myJs: replace Url\n'+ a[0] + '  ->  '+ replaceJsTo[a[0]]);
+            a[0] = myJsUrl + replaceJsTo[a[0]];
+        }else if (replaceJsUrl.includes(a[0])){
             // console.log('FIND AND REPLACE!!!');
             let replaceUrl = a[0].replace('/'+jsVersion, '');
             console.log('myJs: replace Url\n'+ a[0] + '  ->  '+ replaceUrl);
@@ -281,13 +303,37 @@
         };
     }
 
+    async function addChangeUrl(){
+        await sleep(100);
+        // 添加换源按钮
+        let changeUrl = document.createElement("a");
+        changeUrl.innerHTML = '切换JS来源,当前:' + myJsUrlFrom;
+        let titleLogo = document.getElementById('reload-page');
+        if(titleLogo == undefined || titleLogo == null) return;
+        titleLogo.appendChild(changeUrl);
+
+        let nowJsUrl = GM_getValue('mt_js_url');
+        changeUrl.onclick = (event)=>{
+            if(nowJsUrl == undefined || nowJsUrl.includes('coding')){
+                GM_setValue('mt_js_url', 'https://git.fidcz.top/https://raw.githubusercontent.com/fidcz/bl_tools/master/js/yiyao.meituan.com');
+                
+            }else{
+                GM_setValue('mt_js_url', 'https://fidcz.coding.net/p/fidcz_version/d/bl_tools/git/raw/master/js/yiyao.meituan.com');
+            }
+            setTimeout("window.location.reload()", 1000);
+        }
+    }
+
     window.onload = ()=>{
         loopHookIm();
         changeEle("refund-audio", "1", "refundSound1.ogg");
         changeEle("reminder-audio", "1", "reminderSound1.ogg");
         setLoop();
+        addChangeUrl();
         addCloseTip();
     }
+
+    document.on
 
 
     // Your code here...
