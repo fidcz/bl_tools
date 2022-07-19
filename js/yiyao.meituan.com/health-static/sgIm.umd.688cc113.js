@@ -56077,7 +56077,7 @@
             }, [n("im-user-header", {
                 attrs: {
                     "avatar-url": e.computedAvatar(e.newMessage.message),
-                    "c-name": JSON.parse(t.extension || "{}").c_name
+                    "c-name": '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname
                 }
             })], 1), e._v(" "), n("div", {
                 staticClass: "wm-im-item-con"
@@ -62493,7 +62493,7 @@
                     this.showRateHelp && (this.showRateHelp = !1)
                 },
                 computedName: function(e) {
-                    return e ? e.channelId === this.anonymityChannelId ? "匿名用户" : e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].name : "群聊" : '[' + JSON.parse(t.extension || "{}").c_name + ']' + JSON.parse(t.extension || "{}").nickname || "美团客人" : "美团客人"
+                    return e ? e.channelId === this.anonymityChannelId ? "匿名用户" : e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].name : "群聊" : '[' + JSON.parse(e.extension || "{}").c_name + ']' + JSON.parse(e.extension || "{}").nickname || "美团客人" : "美团客人"
                 },
                 computedIsSmartReply: function(e) {
                     return e ? (e.body && e.body.text ? e.body.text : "").startsWith("[机器人自动回复]") : ""
