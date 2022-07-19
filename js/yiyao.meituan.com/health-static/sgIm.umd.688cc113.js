@@ -56814,7 +56814,7 @@
                     }
                 }) : n("im-user-header", {
                     attrs: {
-                        "avatar-url": JSON.parse(t.extension || "{}").user_avatar,
+                        "avatar-url": JSON.parse(t.extension || "{}").c_avatar_url,
                         "c-name": JSON.parse(t.extension || "{}").c_name
                     }
                 })], 1), e._v(" "), n("div", {
@@ -62494,14 +62494,14 @@
                 },
                 computedName: function(e) {
                     console.log(e);
-                    return e ? e.channelId === this.anonymityChannelId ? "匿名用户" : e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].name : "群聊" : '[' + JSON.parse(e.extension || "{}").c_name + ']' + JSON.parse(e.extension || "{}").nickname || "美团客人" : "美团客人"
+                    return e ? e.channelId === this.anonymityChannelId ? "匿名用户" : e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].name : "群聊" : JSON.parse(e.extension || "{}").c_name || "美团客人" : "美团客人"
                 },
                 computedIsSmartReply: function(e) {
                     return e ? (e.body && e.body.text ? e.body.text : "").startsWith("[机器人自动回复]") : ""
                 },
                 computedAvatar: function(e) {
                     if (e)
-                        return e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].groupUrl : void 0 : JSON.parse(e.extension || "{}").user_avatar
+                        return e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].groupUrl : void 0 : JSON.parse(e.extension || "{}").c_avatar_url
                 },
                 computedGroupLabels: function(e) {
                     return e && this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].labelList : []
