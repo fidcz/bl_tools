@@ -5252,8 +5252,8 @@ define("module/order/order_delivery_init", ["module/cookie", "widgets/status_but
                     var n = this.b2cPoiCross ? "待清关" : "待" + t;
                     o.find(".J-delivery-display").text(n)
                 } else
-                    (4 === a && (r === STATUS.WAITING || r === STATUS.DELIVERING || r === STATUS.DONE || r === STATUS.ARRIVING || r === STATUS.ACCEPTED) || 8 === a || 9 === a) && o.find(".J-delivery-display").text(s);
-                if ((4 == a || 8 == a) && r != STATUS.INIT) {
+                    (4 === a && (r === STATUS.WAITING || r === STATUS.DELIVERING || r === STATUS.DONE || r === STATUS.ARRIVING || r === STATUS.ACCEPTED) || 8 === a || 99 === a) && o.find(".J-delivery-display").text(s);
+                if ((4 == a || 8 == a || 9 == a) && r != STATUS.INIT) {
                     if (this.expressInfo && this.expressInfo.riderName && this.expressInfo.riderPhone) {
                         var d = '<div class="color-a2">骑手姓名：' + this.expressInfo.riderName + '</div><div class="color-a2">骑手电话：' + this.expressInfo.riderPhone + "</div>";
                         this.expressInfo.logisticsPlatName && (d = '<div class="color-a2">配送平台：' + this.expressInfo.logisticsPlatName + "</div>" + d),
