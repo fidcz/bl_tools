@@ -62493,7 +62493,6 @@
                     this.showRateHelp && (this.showRateHelp = !1)
                 },
                 computedName: function(e) {
-                    console.log(e);
                     return e ? e.channelId === this.anonymityChannelId ? "匿名用户" : e.sessionType === this.groupChatType ? this.groupInfoMap[e.belongTo] ? this.groupInfoMap[e.belongTo].name : "群聊" : JSON.parse(e.extension || "{}").c_name || "美团客人" : "美团客人"
                 },
                 computedIsSmartReply: function(e) {
