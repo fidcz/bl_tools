@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.33
-// @description  美团替换页面和声音次数,Hook消息0.33
+// @version      0.34
+// @description  美团替换页面和声音次数,Hook消息0.34
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
@@ -18,7 +18,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change ver:0.33');
+    console.log('mt_change Js: ver:0.34');
     unsafeWindow.closeNotify = false;
 
     // 使用本地网站上的version
@@ -40,7 +40,7 @@
     }else if(myJsUrl.includes('gitee')){
         myJsUrlFrom = 'GITEE';
     }
-    console.log('js来源:' +myJsUrlFrom + ',' + myJsUrl);
+    console.log('mt_change: js来源:' +myJsUrlFrom + ',' + myJsUrl);
 
     if(localVer == undefined && reVer != null){
         GM_setValue('mt_js_ver', reVer[1]);
@@ -55,7 +55,7 @@
     const jsVersion = reVer[1];
     // const jsVersion =  '628f3146';
 
-    console.log('myJs: jsVer:'+jsVersion);
+    console.log('mt_change: mtjsVer:'+jsVersion);
 
     
     const replaceJsUrl = [
@@ -75,12 +75,12 @@
         //console.log(a,b,c,d);
         if (a[0] in replaceJsTo){
             // 内部命名规则
-            console.log('myJs: replace Url\n'+ a[0] + '  ->  '+ replaceJsTo[a[0]]);
+            console.log('mt_change: replace Url\n'+ a[0] + '  ->  '+ replaceJsTo[a[0]]);
             a[0] = myJsUrl + replaceJsTo[a[0]];
         }else if (replaceJsUrl.includes(a[0])){
             // console.log('FIND AND REPLACE!!!');
             let replaceUrl = a[0].replace('/'+jsVersion, '');
-            console.log('myJs: replace Url\n'+ a[0] + '  ->  '+ replaceUrl);
+            console.log('mt_change: replace Url\n'+ a[0] + '  ->  '+ replaceUrl);
             a[0] = myJsUrl + replaceUrl;
             // return;
         }
@@ -109,7 +109,7 @@
         //ele.innerHTML='<div id="' + id + '" data-loop="' + loop + '" data-src="' + ogg + '"></div>';
     }
 
-    console.log('Change Require');
+    console.log('mt_change: Change Require Success');
 
 
     async function setLoop() {
@@ -121,7 +121,7 @@
             changeEle("reminder-audio", "1", "reminderSound1.ogg");
             await sleep(500);
         }
-            console.log("Auto change end");
+            console.log("mt_change: Auto change ogg end");
     }
 
     var sendLocalNotify = function (title, content, icon){
@@ -193,7 +193,7 @@
                         notifyTitle += '消息';
                     }
                 }catch(err){
-                    console.warn(err.message);
+                    console.warn('mt_change: Err ' + err.message);
                 }
                 
     
@@ -217,11 +217,11 @@
     
             }
         }catch(error){
-            console.warn(error.message);
+            console.warn('mt_change: Err ' + error.message);
             return;
         }
     
-        console.log(notifyTitle + notifyContent);
+        console.log('mt_change: ' + notifyTitle + notifyContent);
     
         // 检查浏览器支持发送消息
         if(typeof isFSendNotify === 'undefined'){
@@ -229,7 +229,7 @@
             // 先检查浏览器是否支持
             
             if (!window.Notification) {
-                console.log('浏览器不支持通知');
+                console.log('mt_change: 浏览器不支持通知');
                 var isFSendNotify = false;
                 return;
             } else {
@@ -245,7 +245,7 @@
                             var isFSendNotify = true;
                             sendLocalNotify(notifyTitle, notifyContent);
                         } else if (permission === 'default') {
-                            console.warn('用户关闭授权 未刷新页面之前 可以再次请求授权');
+                            console.warn('mt_change: 用户关闭授权 未刷新页面之前 可以再次请求授权');
                         } else {
                         // denied
                             var isFSendNotify = false;
@@ -254,7 +254,7 @@
                     });
                 } else {
                 // denied 用户拒绝
-                    console.log('用户曾经拒绝显示通知');
+                    console.log('mt_change: 用户曾经拒绝显示通知');
                     var isFSendNotify = false;
                 }
             }
@@ -270,7 +270,7 @@
             try{
                 if(typeof(unsafeWindow.imApp.mtdx.eventEmitter.on) !== 'undefined'){
                     unsafeWindow.imApp.mtdx.eventEmitter.on('message', (msgdata)=>{checkLocalNotify(msgdata.message)});
-                    console.log('添加消息hook成功');
+                    console.log('mt_change: 添加消息hook成功');
                     break;
                 }
             }catch(error){}
