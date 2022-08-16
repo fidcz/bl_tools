@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美团替换页面和声音次数
 // @namespace    mt_change
-// @version      0.35
-// @description  美团替换页面和声音次数,Hook消息0.35
+// @version      0.36
+// @description  美团替换页面和声音次数,Hook消息0.36
 // @author       fidcz
 // @include      *yiyao.meituan.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=meituan.com
@@ -18,7 +18,7 @@
     // 历史订单页面: https://yiyao.meituan.com/#/v2/order/history
     // 退款订单页面: https://yiyao.meituan.com/#/v2/order/refund/unprocessed
     // 催单订单页面: https://yiyao.meituan.com/#/v2/order/reminder
-    console.log('mt_change Js: ver:0.35');
+    console.log('mt_change Js: ver:0.36');
     unsafeWindow.closeNotify = false;
 
     // 使用本地网站上的version
@@ -307,7 +307,7 @@
         await sleep(100);
         // 添加换源按钮
         let changeUrl = document.createElement("a");
-        changeUrl.innerHTML = '切换JS来源,当前:' + myJsUrlFrom;
+        changeUrl.innerHTML = '\xa0\xa0\xa0\xa0\xa0切换JS来源,当前:' + myJsUrlFrom;
         let titleLogo = document.getElementById('reload-page');
         if(titleLogo == undefined || titleLogo == null) return;
         titleLogo.appendChild(changeUrl);
@@ -324,11 +324,51 @@
         }
     }
 
+    async function addCopyCookie(){
+        await sleep(100);
+        // 添加复制Cookie按钮
+        let copyCookie = document.createElement("a");
+        copyCookie.innerHTML = '复制当前Cookie';
+
+        let titleLogo = document.getElementById('reload-page');
+        if(titleLogo == undefined || titleLogo == null) return;
+        titleLogo.appendChild(copyCookie);
+
+        copyCookie.onclick = async (event)=>{
+            let clickEle = event.currentTarget;
+            if(document.cookie != ''){
+                try{
+                    // 尝试复制
+                    let searchInput = document.getElementsByClassName('J-search')[0];
+                    let tmpVal = searchInput.value;
+                    searchInput.value = document.cookie;
+                    searchInput.select();
+                    clickEle.innerHTML = '点我复制Cookie';
+                    document.execCommand("copy");
+                    clickEle.innerHTML = '已复制!!!';
+                    searchInput.value = tmpVal;
+                    await sleep(1000);
+                    clickEle.innerHTML = '点我复制Cookie';
+                }catch{
+                    // 复制失败
+                    clickEle.innerHTML = '复制失败,请重试';
+                    await sleep(1000);
+                    clickEle.innerHTML = '点我复制Cookie';
+                }
+            }else{
+                clickEle.innerHTML = '当前无Cookie';
+                await sleep(1000);
+                clickEle.innerHTML = '点我复制Cookie';
+            }
+        }
+    }
+
     window.onload = ()=>{
         loopHookIm();
         changeEle("refund-audio", "1", "refundSound1.ogg");
         changeEle("reminder-audio", "1", "reminderSound1.ogg");
         setLoop();
+        addCopyCookie();
         addChangeUrl();
         addCloseTip();
     }
